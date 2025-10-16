@@ -132,7 +132,7 @@ export function HeroSection() {
   }, [])
 
   return (
-    <section className="relative overflow-hidden min-h-screen px-4 sm:px-6 lg:px-8 flex items-center py-20 sm:py-0">
+    <section className="relative overflow-hidden min-h-screen px-4 sm:px-6 lg:px-8 flex items-center py-20 sm:py-0 " style={{ backgroundColor: '#f6fafd' }}>
       <div className="max-w-7xl mx-auto w-full">
         {/* Logo top left - optimisé mobile */}
         <div ref={logoRef} className="absolute top-4 left-4 sm:top-8 sm:left-6 lg:left-8 z-10">
@@ -174,11 +174,10 @@ export function HeroSection() {
           <div ref={statsRef} className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 lg:gap-10 pt-2 sm:pt-4 max-w-4xl mx-auto">
             {STATS.map((stat, index) => (
               <div key={index} className="text-center bg-card/50 rounded-2xl p-4 sm:p-0 sm:bg-transparent">
-                <div className={`text-4xl sm:text-5xl lg:text-6xl font-bold mb-2 sm:mb-3 ${
-                  index === 1
-                    ? "bg-gradient-to-r from-amber-400 via-yellow-500 to-amber-500 bg-clip-text text-transparent"
-                    : "text-foreground"
-                }`}>
+                <div className={`text-4xl sm:text-5xl lg:text-6xl font-bold mb-2 sm:mb-3 ${index === 1
+                  ? "bg-gradient-to-r from-amber-400 via-yellow-500 to-amber-500 bg-clip-text text-transparent"
+                  : "text-foreground"
+                  }`}>
                   <AnimatedCounter
                     end={stat.value}
                     prefix={stat.prefix}
@@ -194,18 +193,24 @@ export function HeroSection() {
 
           {/* Rating */}
           <div ref={ratingRef} className="pt-2 sm:pt-4">
-            <div ref={starsRef} className="flex gap-1 justify-center mb-2 sm:mb-3">
-              {[...Array(5)].map((_, i) => (
+            <div className="inline-flex items-center gap-3 sm:gap-4 px-6 py-3 sm:px-8 sm:py-4 ">
+              <div ref={starsRef} className="flex gap-1">
+                {[...Array(4)].map((_, i) => (
+                  <Star
+                    key={i}
+                    className="w-6 h-6 sm:w-7 sm:h-7 fill-amber-400 text-amber-400"
+                  />
+                ))}
                 <Star
-                  key={i}
-                  className="w-5 h-5 sm:w-6 sm:h-6 fill-amber-500 text-amber-500"
+                  className="w-6 h-6 sm:w-7 sm:h-7 fill-gray-300 text-gray-300"
                 />
-              ))}
+              </div>
+              <div className="flex items-center gap-2 text-gray-700">
+                <span className="text-2xl sm:text-3xl font-bold">4.7/5</span>
+                <span className="text-lg sm:text-xl">•</span>
+                <span className="text-sm sm:text-base">Basé sur 100 avis clients</span>
+              </div>
             </div>
-            <p className="text-sm sm:text-base font-semibold">
-              <span className="text-accent-foreground">98%</span>{" "}
-              <span className="text-foreground">CLIENTS SATISFAITS</span>
-            </p>
           </div>
 
           {/* CTA button */}
