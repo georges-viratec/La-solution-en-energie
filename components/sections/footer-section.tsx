@@ -4,21 +4,21 @@ import { FOOTER_LINKS } from "@/lib/constants/site-data"
 export function FooterSection() {
   return (
     <footer className="bg-muted/50 border-t border-border">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 sm:gap-8">
           {/* Logo et description */}
           <div className="md:col-span-2">
-            <div className="flex items-center gap-3 mb-4">
+            <div className="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
               <Image
                 src="/logo.png"
                 alt="La Solution en Énergie"
-                width={40}
-                height={40}
-                className="object-contain"
+                width={32}
+                height={32}
+                className="object-contain sm:w-[40px] sm:h-[40px]"
               />
-              <span className="text-xl font-bold text-foreground">La Solution en Énergie</span>
+              <span className="text-lg sm:text-xl font-bold text-foreground">La Solution en Énergie</span>
             </div>
-            <p className="text-muted-foreground mb-6 max-w-md">
+            <p className="text-sm sm:text-base text-muted-foreground mb-4 sm:mb-6 max-w-md">
               Votre partenaire de confiance pour optimiser les contrats énergétiques des entreprises et développer vos
               revenus récurrents.
             </p>
@@ -36,11 +36,11 @@ export function FooterSection() {
 
           {/* Liens rapides */}
           <div>
-            <h3 className="text-lg font-semibold text-foreground mb-4">Liens rapides</h3>
-            <ul className="space-y-3">
+            <h3 className="text-base sm:text-lg font-semibold text-foreground mb-3 sm:mb-4">Liens rapides</h3>
+            <ul className="space-y-2 sm:space-y-3">
               {FOOTER_LINKS.quick.map((link, index) => (
                 <li key={index}>
-                  <a href={link.href} className="text-muted-foreground hover:text-foreground transition-colors">
+                  <a href={link.href} className="text-sm sm:text-base text-muted-foreground hover:text-foreground transition-colors">
                     {link.label}
                   </a>
                 </li>
@@ -50,48 +50,48 @@ export function FooterSection() {
 
           {/* Contact */}
           <div>
-            <h3 className="text-lg font-semibold text-foreground mb-4">Contact</h3>
-            <div className="space-y-3">
+            <h3 className="text-base sm:text-lg font-semibold text-foreground mb-3 sm:mb-4">Contact</h3>
+            <div className="space-y-2 sm:space-y-3">
               <a
                 href="tel:0184883245"
                 className="flex items-center gap-3 hover:text-foreground transition-colors cursor-pointer"
               >
-                <svg className="w-4 h-4 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <svg className="w-4 h-4 text-primary flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
                   />
                 </svg>
-                <span className="text-muted-foreground hover:text-foreground">01 84 88 32 45</span>
+                <span className="text-sm sm:text-base text-muted-foreground hover:text-foreground">01 84 88 32 45</span>
               </a>
               <a
                 href="mailto:contact@courtier-energie-pro.fr"
                 className="flex items-center gap-3 hover:text-foreground transition-colors cursor-pointer"
               >
-                <svg className="w-4 h-4 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <svg className="w-4 h-4 text-primary flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
                   />
                 </svg>
-                <span className="text-muted-foreground hover:text-foreground">contact@courtier-energie-pro.fr</span>
+                <span className="text-sm sm:text-base text-muted-foreground hover:text-foreground break-words">contact@courtier-energie-pro.fr</span>
               </a>
               <div className="flex items-center gap-3">
-                <svg className="w-4 h-4 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <svg className="w-4 h-4 text-primary flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
-                <span className="text-muted-foreground">Lun-Ven 9h-18h</span>
+                <span className="text-sm sm:text-base text-muted-foreground">Lun-Ven 9h-18h</span>
               </div>
             </div>
           </div>
         </div>
 
         {/* Copyright */}
-        <div className="border-t border-border mt-8 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-muted-foreground text-sm">© 2025 La Solution en Énergie. Tous droits réservés.</p>
-          <div className="flex gap-6 text-sm">
+        <div className="border-t border-border mt-6 sm:mt-8 pt-6 sm:pt-8 flex flex-col md:flex-row justify-between items-center gap-3 sm:gap-4">
+          <p className="text-muted-foreground text-xs sm:text-sm text-center md:text-left">© 2025 La Solution en Énergie. Tous droits réservés.</p>
+          <div className="flex flex-wrap justify-center gap-4 sm:gap-6 text-xs sm:text-sm">
             {FOOTER_LINKS.legal.map((link, index) => (
               <a key={index} href={link.href} className="text-muted-foreground hover:text-foreground transition-colors">
                 {link.label}

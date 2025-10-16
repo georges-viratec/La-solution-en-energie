@@ -1,29 +1,80 @@
+"use client"
+
 import { PILLARS } from "@/lib/constants/site-data"
+import { useEffect, useRef, useState } from "react"
 
 export function PillarsSection() {
+  const scrollRef = useRef<HTMLDivElement>(null)
+  const [activeIndex, setActiveIndex] = useState(0)
+
+  useEffect(() => {
+    const scrollContainer = scrollRef.current
+    if (!scrollContainer) return
+
+    const handleScroll = () => {
+      const scrollLeft = scrollContainer.scrollLeft
+      const cardWidth = scrollContainer.scrollWidth / PILLARS.length
+      const index = Math.round(scrollLeft / cardWidth)
+      setActiveIndex(index)
+    }
+
+    scrollContainer.addEventListener("scroll", handleScroll)
+    return () => scrollContainer.removeEventListener("scroll", handleScroll)
+  }, [])
+
   return (
     <section className="relative py-12 md:py-16 lg:min-h-screen lg:flex lg:items-center px-4 sm:px-6 lg:px-8 overflow-hidden">
       {/* Subtle gradient background */}
       <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5 pointer-events-none" />
 
       <div className="max-w-7xl mx-auto relative z-10 lg:w-full">
-        <div className="text-center mb-8 lg:mb-6">
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground leading-tight mb-4">
+        <div className="text-center mb-6 sm:mb-8 lg:mb-6 px-2">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-foreground leading-tight mb-4">
             4 piliers pour développer
-            <br />
+            <br className="hidden sm:block" />
             <span className="bg-gradient-to-r from-primary via-blue-600 to-accent-foreground bg-clip-text text-transparent">
-              vos revenus récurrents
+              {" "}vos revenus récurrents
             </span>
           </h2>
         </div>
 
         {/* Horizontal scrollable container */}
-        <div className="overflow-x-auto pb-4 -mx-4 px-4 sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8 lg:overflow-visible">
-          <div className="flex gap-6 min-w-max lg:grid lg:grid-cols-4 lg:min-w-0 lg:gap-8">
-            {PILLARS.map((pillar) => (
-              <PillarCardContent key={pillar.id} {...pillar} />
+        <div
+          ref={scrollRef}
+          className="overflow-x-auto pb-4 lg:overflow-visible snap-x snap-mandatory lg:snap-none scrollbar-hide -mx-4 lg:mx-0"
+        >
+          <div className="flex gap-4 px-4 lg:grid lg:grid-cols-4 lg:gap-8 lg:px-0">
+            {PILLARS.map((pillar, index) => (
+              <div
+                key={pillar.id}
+                className="snap-center flex-shrink-0 lg:w-auto lg:snap-align-none"
+              >
+                <div className="w-[calc(100vw-2rem)] max-w-[400px] lg:w-auto lg:max-w-none">
+                  <PillarCardContent {...pillar} />
+                </div>
+              </div>
             ))}
           </div>
+        </div>
+
+        {/* Pagination dots - mobile only */}
+        <div className="flex justify-center gap-2 mt-4 lg:hidden">
+          {PILLARS.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => {
+                const scrollContainer = scrollRef.current
+                if (scrollContainer) {
+                  const cardWidth = scrollContainer.scrollWidth / PILLARS.length
+                  scrollContainer.scrollTo({ left: cardWidth * index, behavior: "smooth" })
+                }
+              }}
+              className={`h-2 rounded-full transition-all duration-300 ${
+                activeIndex === index ? "w-8 bg-primary" : "w-2 bg-primary/30"
+              }`}
+              aria-label={`Aller au pilier ${index + 1}`}
+            />
+          ))}
         </div>
       </div>
     </section>
@@ -88,14 +139,14 @@ function PillarCardContent({
   }
 
   return (
-    <div className="w-[320px] lg:w-auto lg:h-full bg-card border border-border rounded-2xl p-6 hover:shadow-lg transition-all duration-300 group flex-shrink-0 flex flex-col">
+    <div className="w-full h-full bg-card border border-border rounded-2xl p-5 sm:p-6 hover:shadow-lg transition-all duration-300 group flex flex-col">
       <div
-        className={`w-12 h-12 rounded-full ${colorMap[color]} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}
+        className={`w-10 h-10 sm:w-12 sm:h-12 rounded-full ${colorMap[color]} flex items-center justify-center mb-3 sm:mb-4 group-hover:scale-110 transition-transform duration-300`}
       >
         {iconMap[icon as keyof typeof iconMap]}
       </div>
-      <h3 className="text-xl font-bold text-foreground mb-3">{title}</h3>
-      <p className="text-foreground/80 leading-relaxed mb-4 text-sm">{description}</p>
+      <h3 className="text-lg sm:text-xl font-bold text-foreground mb-2 sm:mb-3">{title}</h3>
+      <p className="text-foreground/80 leading-relaxed mb-3 sm:mb-4 text-xs sm:text-sm">{description}</p>
       <ul className="space-y-2">
         {features.map((feature, index) => (
           <li key={index} className="flex items-start gap-3">

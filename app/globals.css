@@ -168,3 +168,13 @@
 .animate-slide-in-right {
   animation: slideInRight 0.5s ease-out forwards;
 }
+
+/* Hide scrollbar for mobile snap scroll */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}

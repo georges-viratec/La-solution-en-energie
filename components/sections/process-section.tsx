@@ -1,20 +1,81 @@
+"use client"
+
 import { PROCESS_STEPS } from "@/lib/constants/site-data"
+import { useEffect, useRef, useState } from "react"
 
 export function ProcessSection() {
+  const scrollRef = useRef<HTMLDivElement>(null)
+  const [activeIndex, setActiveIndex] = useState(0)
+
+  useEffect(() => {
+    const scrollContainer = scrollRef.current
+    if (!scrollContainer) return
+
+    const handleScroll = () => {
+      const scrollLeft = scrollContainer.scrollLeft
+      const cardWidth = scrollContainer.scrollWidth / PROCESS_STEPS.length
+      const index = Math.round(scrollLeft / cardWidth)
+      setActiveIndex(index)
+    }
+
+    scrollContainer.addEventListener("scroll", handleScroll)
+    return () => scrollContainer.removeEventListener("scroll", handleScroll)
+  }, [])
+
   return (
     <section className="py-12 md:py-16 lg:min-h-screen lg:flex lg:items-center px-4 sm:px-6 lg:px-8 bg-muted/30">
       <div className="max-w-7xl mx-auto lg:w-full">
-        <div className="text-center mb-8 lg:mb-6">
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-4 leading-tight">
+        <div className="text-center mb-6 sm:mb-8 lg:mb-6 px-2">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-foreground mb-4 leading-tight">
             Notre Processus en
-            <br />
+            <br className="hidden sm:block" />
             <span className="bg-gradient-to-r from-primary via-blue-600 to-accent-foreground bg-clip-text text-transparent">
-              4 Étapes Simples
+              {" "}4 Étapes Simples
             </span>
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+        {/* Mobile: Horizontal scroll with snap */}
+        <div
+          ref={scrollRef}
+          className="overflow-x-auto pb-4 md:hidden snap-x snap-mandatory scrollbar-hide -mx-4"
+        >
+          <div className="flex gap-4 px-4 pt-4">
+            {PROCESS_STEPS.map((step) => (
+              <div
+                key={step.number}
+                className="snap-center flex-shrink-0"
+              >
+                <div className="w-[calc(100vw-2rem)] max-w-[500px]">
+                  <ProcessStepCard {...step} />
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Pagination dots - mobile only */}
+        <div className="flex justify-center gap-2 mt-4 md:hidden">
+          {PROCESS_STEPS.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => {
+                const scrollContainer = scrollRef.current
+                if (scrollContainer) {
+                  const cardWidth = scrollContainer.scrollWidth / PROCESS_STEPS.length
+                  scrollContainer.scrollTo({ left: cardWidth * index, behavior: "smooth" })
+                }
+              }}
+              className={`h-2 rounded-full transition-all duration-300 ${
+                activeIndex === index ? "w-8 bg-primary" : "w-2 bg-primary/30"
+              }`}
+              aria-label={`Aller à l'étape ${index + 1}`}
+            />
+          ))}
+        </div>
+
+        {/* Desktop: Grid layout */}
+        <div className="hidden md:grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
           {PROCESS_STEPS.map((step) => (
             <ProcessStepCard key={step.number} {...step} />
           ))}
@@ -71,20 +132,20 @@ function ProcessStepCard({
   }
 
   const cardClass = highlighted
-    ? "relative bg-gradient-to-br from-primary/5 to-accent/5 border-2 border-primary/20 rounded-2xl p-6 hover:shadow-xl transition-all duration-300"
-    : "relative bg-card border-2 border-border rounded-2xl p-6 hover:shadow-xl transition-all duration-300 hover:border-primary/30"
+    ? "relative bg-gradient-to-br from-primary/5 to-accent/5 border-2 border-primary/20 rounded-2xl p-5 sm:p-6 hover:shadow-xl transition-all duration-300"
+    : "relative bg-card border-2 border-border rounded-2xl p-5 sm:p-6 hover:shadow-xl transition-all duration-300 hover:border-primary/30"
 
   const badgeClass = highlighted
-    ? "inline-flex items-center gap-2 text-sm font-medium text-primary bg-primary/20 px-4 py-2 rounded-full"
-    : "inline-flex items-center gap-2 text-sm font-medium text-foreground bg-primary/10 px-4 py-2 rounded-full"
+    ? "inline-flex items-center gap-2 text-xs sm:text-sm font-medium text-primary bg-primary/20 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full"
+    : "inline-flex items-center gap-2 text-xs sm:text-sm font-medium text-foreground bg-primary/10 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full"
 
   return (
     <div className={cardClass}>
-      <div className="absolute -top-3 -left-3 w-10 h-10 rounded-full bg-primary text-primary-foreground flex items-center justify-center font-bold text-sm shadow-lg">
+      <div className="absolute -top-2.5 -left-2.5 sm:-top-3 sm:-left-3 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-primary text-primary-foreground flex items-center justify-center font-bold text-xs sm:text-sm shadow-lg">
         {number}
       </div>
-      <h3 className="text-xl font-bold text-foreground mb-3 mt-2">{title}</h3>
-      <p className="text-foreground/80 leading-relaxed mb-4 text-sm">{description}</p>
+      <h3 className="text-lg sm:text-xl font-bold text-foreground mb-2 sm:mb-3 mt-2">{title}</h3>
+      <p className="text-foreground/80 leading-relaxed mb-3 sm:mb-4 text-xs sm:text-sm">{description}</p>
       <div className={badgeClass}>
         {iconMap[badgeIcon as keyof typeof iconMap]}
         <span className={highlighted ? "font-semibold" : ""}>{badge}</span>

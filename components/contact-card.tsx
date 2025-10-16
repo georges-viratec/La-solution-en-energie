@@ -46,13 +46,13 @@ export function ContactCard({ type, title, value, href, subtitle, iconColor }: C
   return (
     <a
       href={href}
-      className="bg-card border border-border rounded-2xl p-4 text-center hover:shadow-lg transition-all duration-300 block hover:border-primary/30 cursor-pointer"
+      className="bg-card border border-border rounded-xl sm:rounded-2xl p-3 sm:p-4 text-center hover:shadow-lg transition-all duration-300 block hover:border-primary/30 cursor-pointer"
     >
-      <div className={`w-10 h-10 rounded-full ${iconColorMap[iconColor]} flex items-center justify-center mx-auto mb-3`}>
+      <div className={`w-9 h-9 sm:w-10 sm:h-10 rounded-full ${iconColorMap[iconColor]} flex items-center justify-center mx-auto mb-2 sm:mb-3`}>
         {iconMap[type]}
       </div>
-      <h4 className="text-base font-bold text-foreground mb-2">{title}</h4>
-      <p className="text-foreground font-semibold text-sm mb-1">{value}</p>
+      <h4 className="text-sm sm:text-base font-bold text-foreground mb-1 sm:mb-2">{title}</h4>
+      <p className="text-foreground font-semibold text-xs sm:text-sm mb-1 break-words">{value}</p>
       <p className="text-xs text-muted-foreground">{subtitle}</p>
     </a>
   )
