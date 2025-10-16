@@ -2,9 +2,15 @@
 
 import { PILLARS } from "@/lib/constants/site-data"
 import { useEffect, useRef, useState } from "react"
+import { gsap } from "gsap"
+import { ScrollTrigger } from "gsap/ScrollTrigger"
+
+gsap.registerPlugin(ScrollTrigger)
 
 export function PillarsSection() {
   const scrollRef = useRef<HTMLDivElement>(null)
+  const sectionRef = useRef<HTMLDivElement>(null)
+  const titleRef = useRef<HTMLDivElement>(null)
   const [activeIndex, setActiveIndex] = useState(0)
 
   useEffect(() => {
@@ -22,13 +28,57 @@ export function PillarsSection() {
     return () => scrollContainer.removeEventListener("scroll", handleScroll)
   }, [])
 
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // Title animation
+      if (titleRef.current) {
+        gsap.set(titleRef.current, { opacity: 1 })
+        gsap.from(titleRef.current, {
+          opacity: 0,
+          y: 40,
+          duration: 0.8,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: titleRef.current,
+            start: "top 85%",
+            toggleActions: "play none none none"
+          }
+        })
+      }
+
+      // Cards animation (desktop only)
+      const isDesktop = typeof window !== 'undefined' && window.innerWidth >= 1024
+      if (isDesktop) {
+        const cards = sectionRef.current?.querySelectorAll(".pillar-card")
+        if (cards && cards.length > 0) {
+          gsap.set(cards, { opacity: 1 })
+          gsap.from(cards, {
+            opacity: 0,
+            y: 60,
+            scale: 0.9,
+            duration: 0.7,
+            stagger: 0.15,
+            ease: "back.out(1.4)",
+            scrollTrigger: {
+              trigger: sectionRef.current,
+              start: "top 75%",
+              toggleActions: "play none none none"
+            }
+          })
+        }
+      }
+    })
+
+    return () => ctx.revert()
+  }, [])
+
   return (
     <section className="relative py-12 md:py-16 lg:min-h-screen lg:flex lg:items-center px-4 sm:px-6 lg:px-8 overflow-hidden">
       {/* Subtle gradient background */}
       <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5 pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto relative z-10 lg:w-full">
-        <div className="text-center mb-6 sm:mb-8 lg:mb-6 px-2">
+      <div ref={sectionRef} className="max-w-7xl mx-auto relative z-10 lg:w-full">
+        <div ref={titleRef} className="text-center mb-6 sm:mb-8 lg:mb-6 px-2">
           <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-foreground leading-tight mb-4">
             4 piliers pour développer
             <br className="hidden sm:block" />
@@ -139,7 +189,7 @@ function PillarCardContent({
   }
 
   return (
-    <div className="w-full h-full bg-card border border-border rounded-2xl p-5 sm:p-6 hover:shadow-lg transition-all duration-300 group flex flex-col">
+    <div className="pillar-card w-full h-full bg-card border border-border rounded-2xl p-5 sm:p-6 hover:shadow-lg transition-all duration-300 group flex flex-col">
       <div
         className={`w-10 h-10 sm:w-12 sm:h-12 rounded-full ${colorMap[color]} flex items-center justify-center mb-3 sm:mb-4 group-hover:scale-110 transition-transform duration-300`}
       >
