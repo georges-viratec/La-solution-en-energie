@@ -5,10 +5,12 @@ import { AnimatedCounter } from "@/components/animated-counter"
 import { ArrowRight, Star } from "lucide-react"
 import Image from "next/image"
 import { STATS } from "@/lib/constants/site-data"
-import { useEffect, useRef } from "react"
+import { useEffect, useRef, useState } from "react"
 import { gsap } from "gsap"
+import { ContactFormModal } from "@/components/contact-form-modal"
 
 export function HeroSection() {
+  const [isModalOpen, setIsModalOpen] = useState(false)
   const logoRef = useRef<HTMLDivElement>(null)
   const badgeRef = useRef<HTMLDivElement>(null)
   const titleRef = useRef<HTMLHeadingElement>(null)
@@ -172,7 +174,11 @@ export function HeroSection() {
           <div ref={statsRef} className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 lg:gap-10 pt-2 sm:pt-4 max-w-4xl mx-auto">
             {STATS.map((stat, index) => (
               <div key={index} className="text-center bg-card/50 rounded-2xl p-4 sm:p-0 sm:bg-transparent">
-                <div className="text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground mb-2 sm:mb-3">
+                <div className={`text-4xl sm:text-5xl lg:text-6xl font-bold mb-2 sm:mb-3 ${
+                  index === 1
+                    ? "bg-gradient-to-r from-amber-400 via-yellow-500 to-amber-500 bg-clip-text text-transparent"
+                    : "text-foreground"
+                }`}>
                   <AnimatedCounter
                     end={stat.value}
                     prefix={stat.prefix}
@@ -206,7 +212,8 @@ export function HeroSection() {
           <div ref={ctaRef} className="pt-2 sm:pt-4">
             <Button
               size="lg"
-              className="bg-foreground hover:bg-foreground/90 text-background text-sm sm:text-base px-8 py-5 sm:px-10 sm:py-6 rounded-full font-semibold shadow-lg hover:shadow-xl transition-all duration-300 group hover:scale-105 w-full sm:w-auto"
+              onClick={() => setIsModalOpen(true)}
+              className="bg-gradient-to-r from-amber-400 via-yellow-500 to-amber-500 hover:from-amber-500 hover:via-yellow-600 hover:to-amber-600 text-foreground text-sm sm:text-base px-8 py-5 sm:px-10 sm:py-6 rounded-full font-semibold shadow-lg hover:shadow-xl transition-all duration-300 group hover:scale-105 w-full sm:w-auto"
             >
               Nous rejoindre
               <ArrowRight className="ml-2 w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform duration-300" />
@@ -214,6 +221,9 @@ export function HeroSection() {
           </div>
         </div>
       </div>
+
+      {/* Contact Form Modal */}
+      <ContactFormModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </section>
   )
 }

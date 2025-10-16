@@ -2,13 +2,15 @@
 
 import { Button } from "@/components/ui/button"
 import { ArrowRight } from "lucide-react"
-import { useEffect, useRef } from "react"
+import { useEffect, useRef, useState } from "react"
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
+import { ContactFormModal } from "@/components/contact-form-modal"
 
 gsap.registerPlugin(ScrollTrigger)
 
 export function VideoCtaSection() {
+  const [isModalOpen, setIsModalOpen] = useState(false)
   const titleRef = useRef<HTMLHeadingElement>(null)
   const descRef = useRef<HTMLParagraphElement>(null)
   const videoRef = useRef<HTMLDivElement>(null)
@@ -67,20 +69,23 @@ export function VideoCtaSection() {
           référence validée.
         </p>
 
-        <div ref={videoRef} className="bg-card border border-border rounded-2xl sm:rounded-3xl overflow-hidden mb-6 sm:mb-8 aspect-video flex items-center justify-center shadow-xl hover:shadow-2xl transition-shadow duration-300">
-          <div className="text-center">
-            <div className="w-16 h-16 sm:w-20 sm:h-20 bg-primary rounded-full flex items-center justify-center mx-auto hover:scale-110 transition-transform duration-300 cursor-pointer shadow-lg">
-              <svg className="w-8 h-8 sm:w-10 sm:h-10 text-primary-foreground ml-1" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M8 5v14l11-7z" />
-              </svg>
-            </div>
-          </div>
+        <div ref={videoRef} className="w-full max-w-md mx-auto mb-6 sm:mb-8">
+          <video
+            className="w-full h-auto rounded-2xl"
+            controls
+            preload="metadata"
+            style={{ maxHeight: '60vh' }}
+          >
+            <source src="/Multiclip_16_10_2025.mp4" type="video/mp4" />
+            Votre navigateur ne supporte pas la lecture de vidéos.
+          </video>
         </div>
 
         <div ref={ctaRef} className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
           <Button
             size="lg"
-            className="bg-foreground hover:bg-foreground/90 text-background text-sm sm:text-base lg:text-lg px-8 py-5 sm:px-10 sm:py-6 lg:py-7 rounded-full font-semibold shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105 group w-full sm:w-auto"
+            onClick={() => setIsModalOpen(true)}
+            className="bg-gradient-to-r from-amber-400 via-yellow-500 to-amber-500 hover:from-amber-500 hover:via-yellow-600 hover:to-amber-600 text-foreground text-sm sm:text-base lg:text-lg px-8 py-5 sm:px-10 sm:py-6 lg:py-7 rounded-full font-semibold shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105 group w-full sm:w-auto"
           >
             <svg className="w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
               <path
@@ -105,6 +110,9 @@ export function VideoCtaSection() {
           </div>
         </div>
       </div>
+
+      {/* Contact Form Modal */}
+      <ContactFormModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </section>
   )
 }

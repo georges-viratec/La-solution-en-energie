@@ -141,7 +141,7 @@ function ProcessStepCard({
 
   return (
     <div className={cardClass}>
-      <div className="absolute -top-2.5 -left-2.5 sm:-top-3 sm:-left-3 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-primary text-primary-foreground flex items-center justify-center font-bold text-xs sm:text-sm shadow-lg">
+      <div className="absolute -top-2.5 -left-2.5 sm:-top-3 sm:-left-3 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-gradient-to-r from-blue-500 via-blue-600 to-primary text-white flex items-center justify-center font-bold text-xs sm:text-sm shadow-lg">
         {number}
       </div>
       <h3 className="text-lg sm:text-xl font-bold text-foreground mb-2 sm:mb-3 mt-2">{title}</h3>
