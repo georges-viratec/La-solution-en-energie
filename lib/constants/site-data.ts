@@ -225,8 +225,10 @@ export const FOOTER_LINKS = {
     { label: "FAQ", href: "#" }
   ],
   legal: [
-    { label: "Mentions légales", href: "#" },
-    { label: "Politique de confidentialité", href: "#" },
+    { label: "Mentions légales", href: "/mentions-legales" },
+    { label: "Politique de confidentialité", href: "/politique-confidentialite" },
+    { label: "Conditions générales d'utilisation", href: "/cgu" },
+    { label: "Politique de cookies", href: "/cookies" },
     { label: "CGV", href: "#" }
   ]
 } as const
