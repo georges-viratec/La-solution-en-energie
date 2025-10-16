@@ -4,7 +4,8 @@
       "Read(//Users/grs/Desktop/Courtier Énergie Landing/app/**)",
       "Bash(npm install:*)",
       "Read(//Users/grs/Desktop/La solution en energie /app/**)",
-      "Read(//Users/grs/Desktop/**)"
+      "Read(//Users/grs/Desktop/**)",
+      "Bash(npm run build:*)"
     ],
     "deny": [],
     "ask": []
