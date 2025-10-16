@@ -10,7 +10,7 @@ import { FooterSection } from "@/components/sections/footer-section"
 export default function Home() {
   return (
     <>
-      <main className="min-h-screen">
+      <main className="min-h-screen ">
         <HeroSection />
         <PillarsSection />
         <ProcessSection />
