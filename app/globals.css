@@ -178,3 +178,8 @@
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
 }
+
+/* Smooth scroll behavior */
+html {
+  scroll-behavior: smooth;
+}

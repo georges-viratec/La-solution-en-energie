@@ -1,23 +1,73 @@
+"use client"
+
 import { Button } from "@/components/ui/button"
 import { ArrowRight } from "lucide-react"
+import { useEffect, useRef } from "react"
+import { gsap } from "gsap"
+import { ScrollTrigger } from "gsap/ScrollTrigger"
+
+gsap.registerPlugin(ScrollTrigger)
 
 export function VideoCtaSection() {
+  const titleRef = useRef<HTMLHeadingElement>(null)
+  const descRef = useRef<HTMLParagraphElement>(null)
+  const videoRef = useRef<HTMLDivElement>(null)
+  const ctaRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // Set initial state
+      if (titleRef.current) gsap.set(titleRef.current, { opacity: 1 })
+      if (descRef.current) gsap.set(descRef.current, { opacity: 1 })
+      if (videoRef.current) gsap.set(videoRef.current, { opacity: 1 })
+      if (ctaRef.current) gsap.set(ctaRef.current, { opacity: 1 })
+
+      // Title animation
+      gsap.from(titleRef.current, {
+        opacity: 0,
+        y: 30,
+        duration: 0.6,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: titleRef.current,
+          start: "top 80%",
+          toggleActions: "play none none none"
+        }
+      })
+
+      // Video container animation (simplified)
+      gsap.from(videoRef.current, {
+        opacity: 0,
+        y: 30,
+        duration: 0.6,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: videoRef.current,
+          start: "top 80%",
+          toggleActions: "play none none none"
+        }
+      })
+    })
+
+    return () => ctx.revert()
+  }, [])
+
   return (
     <section className="py-12 md:py-16 lg:min-h-screen lg:flex lg:items-center px-4 sm:px-6 lg:px-8">
       <div className="max-w-4xl mx-auto text-center lg:w-full px-2">
-        <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-foreground mb-4 sm:mb-6 leading-tight">
+        <h2 ref={titleRef} className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-foreground mb-4 sm:mb-6 leading-tight">
           Prêt à développer
           <br className="hidden sm:block" />
           <span className="bg-gradient-to-r from-primary via-blue-600 to-accent-foreground bg-clip-text text-transparent">
             {" "}vos revenus ?
           </span>
         </h2>
-        <p className="text-sm sm:text-base lg:text-lg xl:text-xl text-muted-foreground mb-6 sm:mb-8 leading-relaxed max-w-3xl mx-auto">
+        <p ref={descRef} className="text-sm sm:text-base lg:text-lg xl:text-xl text-muted-foreground mb-6 sm:mb-8 leading-relaxed max-w-3xl mx-auto">
           Rejoignez notre réseau de partenaires et commencez à générer des revenus récurrents dès votre première
           référence validée.
         </p>
 
-        <div className="bg-card border border-border rounded-2xl sm:rounded-3xl overflow-hidden mb-6 sm:mb-8 aspect-video flex items-center justify-center shadow-xl hover:shadow-2xl transition-shadow duration-300">
+        <div ref={videoRef} className="bg-card border border-border rounded-2xl sm:rounded-3xl overflow-hidden mb-6 sm:mb-8 aspect-video flex items-center justify-center shadow-xl hover:shadow-2xl transition-shadow duration-300">
           <div className="text-center">
             <div className="w-16 h-16 sm:w-20 sm:h-20 bg-primary rounded-full flex items-center justify-center mx-auto hover:scale-110 transition-transform duration-300 cursor-pointer shadow-lg">
               <svg className="w-8 h-8 sm:w-10 sm:h-10 text-primary-foreground ml-1" fill="currentColor" viewBox="0 0 24 24">
@@ -27,7 +77,7 @@ export function VideoCtaSection() {
           </div>
         </div>
 
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
+        <div ref={ctaRef} className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
           <Button
             size="lg"
             className="bg-foreground hover:bg-foreground/90 text-background text-sm sm:text-base lg:text-lg px-8 py-5 sm:px-10 sm:py-6 lg:py-7 rounded-full font-semibold shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105 group w-full sm:w-auto"

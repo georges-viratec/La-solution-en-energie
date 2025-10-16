@@ -4,10 +4,18 @@ import { TestimonialCard } from "@/components/testimonial-card"
 import { ContactCard } from "@/components/contact-card"
 import { TESTIMONIALS, CONTACT_METHODS } from "@/lib/constants/site-data"
 import { useEffect, useRef, useState } from "react"
+import { gsap } from "gsap"
+import { ScrollTrigger } from "gsap/ScrollTrigger"
+
+gsap.registerPlugin(ScrollTrigger)
 
 export function TestimonialsSection() {
   const scrollRef = useRef<HTMLDivElement>(null)
   const [activeIndex, setActiveIndex] = useState(0)
+  const titleRef = useRef<HTMLDivElement>(null)
+  const cardsRef = useRef<HTMLDivElement>(null)
+  const contactTitleRef = useRef<HTMLDivElement>(null)
+  const contactCardsRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     const scrollContainer = scrollRef.current
@@ -24,10 +32,87 @@ export function TestimonialsSection() {
     return () => scrollContainer.removeEventListener("scroll", handleScroll)
   }, [])
 
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // Set initial state
+      if (titleRef.current) gsap.set(titleRef.current, { opacity: 1 })
+      if (contactTitleRef.current) gsap.set(contactTitleRef.current, { opacity: 1 })
+
+      // Title animation - simplified
+      gsap.from(titleRef.current, {
+        opacity: 0,
+        y: 30,
+        duration: 0.6,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: titleRef.current,
+          start: "top 80%",
+          toggleActions: "play none none none"
+        }
+      })
+
+      // Cards stagger animation (desktop only, simplified)
+      const isDesktop = typeof window !== 'undefined' && window.innerWidth >= 1024
+      if (isDesktop && cardsRef.current) {
+        const cards = cardsRef.current.querySelectorAll(".testimonial-card")
+        if (cards && cards.length > 0) {
+          gsap.set(cards, { opacity: 1 })
+          gsap.from(cards, {
+            opacity: 0,
+            y: 30,
+            duration: 0.5,
+            stagger: 0.1,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: cardsRef.current,
+              start: "top 75%",
+              toggleActions: "play none none none"
+            }
+          })
+        }
+      }
+
+      // Contact section title animation
+      gsap.from(contactTitleRef.current, {
+        opacity: 0,
+        y: 20,
+        duration: 0.5,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: contactTitleRef.current,
+          start: "top 80%",
+          toggleActions: "play none none none"
+        }
+      })
+
+      // Contact cards animation - simplified
+      if (contactCardsRef.current) {
+        const contactCards = contactCardsRef.current.querySelectorAll(".contact-card")
+        if (contactCards && contactCards.length > 0) {
+          gsap.set(contactCards, { opacity: 1 })
+          gsap.from(contactCards, {
+            opacity: 0,
+            y: 30,
+            duration: 0.5,
+            stagger: 0.08,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: contactCardsRef.current,
+              start: "top 80%",
+              toggleActions: "play none none none"
+            }
+          })
+        }
+      }
+    })
+
+    return () => ctx.revert()
+  }, [])
+
   return (
     <section className="py-12 md:py-16 lg:min-h-screen lg:flex lg:items-center px-4 sm:px-6 lg:px-8 bg-muted/30">
       <div className="max-w-7xl mx-auto lg:w-full">
-        <div className="text-center mb-6 sm:mb-8 lg:mb-6 px-2">
+        <div ref={titleRef} className="text-center mb-6 sm:mb-8 lg:mb-6 px-2">
           <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-foreground mb-3 sm:mb-4 leading-tight">
             Ils nous font confiance et
             <br className="hidden sm:block" />
@@ -80,14 +165,14 @@ export function TestimonialsSection() {
         </div>
 
         {/* Desktop: Grid layout */}
-        <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+        <div ref={cardsRef} className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
           {TESTIMONIALS.map((testimonial, index) => (
             <TestimonialCard key={index} {...testimonial} />
           ))}
         </div>
 
         {/* SECTION CONTACT INTÉGRÉE */}
-        <div className="text-center mb-4 sm:mb-6 px-2">
+        <div ref={contactTitleRef} className="text-center mb-4 sm:mb-6 px-2">
           <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-foreground mb-3 sm:mb-4">
             Besoin d'aide ou d'informations
             <br className="hidden sm:block" />
@@ -97,7 +182,7 @@ export function TestimonialsSection() {
           </h3>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 max-w-4xl mx-auto">
+        <div ref={contactCardsRef} className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 max-w-4xl mx-auto">
           {CONTACT_METHODS.map((method, index) => (
             <ContactCard key={index} {...method} />
           ))}

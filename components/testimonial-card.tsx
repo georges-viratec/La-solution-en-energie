@@ -11,7 +11,7 @@ interface TestimonialCardProps {
 
 export function TestimonialCard({ name, role, content, rating, isGoogle = false }: TestimonialCardProps) {
   return (
-    <Card className="p-6 hover:shadow-lg transition-shadow duration-300">
+    <Card className="testimonial-card p-6 hover:shadow-lg transition-shadow duration-300">
       <div className="flex items-center gap-1 mb-3">
         {Array.from({ length: rating }).map((_, i) => (
           <Star key={i} className="w-4 h-4 fill-accent text-accent" />

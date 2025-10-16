@@ -15,6 +15,7 @@ export function HeroSection() {
   const subtitleRef = useRef<HTMLParagraphElement>(null)
   const statsRef = useRef<HTMLDivElement>(null)
   const ratingRef = useRef<HTMLDivElement>(null)
+  const starsRef = useRef<HTMLDivElement>(null)
   const ctaRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -26,6 +27,7 @@ export function HeroSection() {
       if (subtitleRef.current) gsap.set(subtitleRef.current, { opacity: 1 })
       if (statsRef.current?.children) gsap.set(statsRef.current.children, { opacity: 1 })
       if (ratingRef.current) gsap.set(ratingRef.current, { opacity: 1 })
+      if (starsRef.current?.children) gsap.set(starsRef.current.children, { opacity: 1 })
       if (ctaRef.current) gsap.set(ctaRef.current, { opacity: 1 })
 
       // Logo animation
@@ -81,6 +83,17 @@ export function HeroSection() {
         duration: 0.6,
         delay: 1.2,
         ease: "elastic.out(1, 0.5)"
+      })
+
+      // Stars individual animation with stagger
+      gsap.from(starsRef.current?.children || [], {
+        opacity: 0,
+        scale: 0,
+        rotation: -180,
+        duration: 0.5,
+        delay: 1.3,
+        stagger: 0.1,
+        ease: "back.out(2)"
       })
 
       // CTA button animation
@@ -175,12 +188,11 @@ export function HeroSection() {
 
           {/* Rating */}
           <div ref={ratingRef} className="pt-2 sm:pt-4">
-            <div className="flex gap-1 justify-center mb-2 sm:mb-3">
+            <div ref={starsRef} className="flex gap-1 justify-center mb-2 sm:mb-3">
               {[...Array(5)].map((_, i) => (
                 <Star
                   key={i}
-                  className="w-5 h-5 sm:w-6 sm:h-6 fill-amber-500 text-amber-500 animate-in zoom-in duration-700"
-                  style={{ animationDelay: `${i * 100}ms` }}
+                  className="w-5 h-5 sm:w-6 sm:h-6 fill-amber-500 text-amber-500"
                 />
               ))}
             </div>

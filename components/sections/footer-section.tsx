@@ -1,11 +1,63 @@
+"use client"
+
 import Image from "next/image"
 import { FOOTER_LINKS } from "@/lib/constants/site-data"
+import { useEffect, useRef } from "react"
+import { gsap } from "gsap"
+import { ScrollTrigger } from "gsap/ScrollTrigger"
+
+gsap.registerPlugin(ScrollTrigger)
 
 export function FooterSection() {
+  const gridRef = useRef<HTMLDivElement>(null)
+  const copyrightRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // Grid columns animation
+      if (gridRef.current) {
+        const columns = gridRef.current.children
+        if (columns && columns.length > 0) {
+          gsap.set(columns, { opacity: 1 })
+          gsap.from(columns, {
+            opacity: 0,
+            y: 40,
+            duration: 0.6,
+            stagger: 0.15,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: gridRef.current,
+              start: "top 85%",
+              toggleActions: "play none none none"
+            }
+          })
+        }
+      }
+
+      // Copyright section animation
+      if (copyrightRef.current) {
+        gsap.set(copyrightRef.current, { opacity: 1 })
+        gsap.from(copyrightRef.current, {
+          opacity: 0,
+          y: 20,
+          duration: 0.5,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: copyrightRef.current,
+            start: "top 90%",
+            toggleActions: "play none none none"
+          }
+        })
+      }
+    })
+
+    return () => ctx.revert()
+  }, [])
+
   return (
     <footer className="bg-muted/50 border-t border-border">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 sm:gap-8">
+        <div ref={gridRef} className="grid grid-cols-1 md:grid-cols-4 gap-6 sm:gap-8">
           {/* Logo et description */}
           <div className="md:col-span-2">
             <div className="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
@@ -89,7 +141,7 @@ export function FooterSection() {
         </div>
 
         {/* Copyright */}
-        <div className="border-t border-border mt-6 sm:mt-8 pt-6 sm:pt-8 flex flex-col md:flex-row justify-between items-center gap-3 sm:gap-4">
+        <div ref={copyrightRef} className="border-t border-border mt-6 sm:mt-8 pt-6 sm:pt-8 flex flex-col md:flex-row justify-between items-center gap-3 sm:gap-4">
           <p className="text-muted-foreground text-xs sm:text-sm text-center md:text-left">© 2025 La Solution en Énergie. Tous droits réservés.</p>
           <div className="flex flex-wrap justify-center gap-4 sm:gap-6 text-xs sm:text-sm">
             {FOOTER_LINKS.legal.map((link, index) => (
