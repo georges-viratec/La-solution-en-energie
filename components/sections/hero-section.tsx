@@ -11,7 +11,6 @@ import { ContactFormModal } from "@/components/contact-form-modal"
 
 export function HeroSection() {
   const [isModalOpen, setIsModalOpen] = useState(false)
-  const logoRef = useRef<HTMLDivElement>(null)
   const badgeRef = useRef<HTMLDivElement>(null)
   const titleRef = useRef<HTMLHeadingElement>(null)
   const subtitleRef = useRef<HTMLParagraphElement>(null)
@@ -23,7 +22,6 @@ export function HeroSection() {
   useEffect(() => {
     const ctx = gsap.context(() => {
       // Set initial state to visible
-      if (logoRef.current) gsap.set(logoRef.current, { opacity: 1 })
       if (badgeRef.current) gsap.set(badgeRef.current, { opacity: 1 })
       if (titleRef.current) gsap.set(titleRef.current, { opacity: 1 })
       if (subtitleRef.current) gsap.set(subtitleRef.current, { opacity: 1 })
@@ -31,14 +29,6 @@ export function HeroSection() {
       if (ratingRef.current) gsap.set(ratingRef.current, { opacity: 1 })
       if (starsRef.current?.children) gsap.set(starsRef.current.children, { opacity: 1 })
       if (ctaRef.current) gsap.set(ctaRef.current, { opacity: 1 })
-
-      // Logo animation
-      gsap.from(logoRef.current, {
-        opacity: 0,
-        x: -50,
-        duration: 1,
-        ease: "power3.out"
-      })
 
       // Badge animation
       gsap.from(badgeRef.current, {
@@ -133,18 +123,6 @@ export function HeroSection() {
 
   return (
     <section className="relative overflow-hidden min-h-screen flex flex-col bg-background">
-      {/* Logo en haut à gauche - position absolue par rapport à la section */}
-      <div ref={logoRef} className="absolute top-4 left-4 sm:top-6 sm:left-8 md:top-8 md:left-12 lg:top-8 lg:left-16 z-50 mb-8 sm:mb-10 md:mb-12">
-        <Image
-          src="/logo.png"
-          alt="La Solution en Énergie"
-          width={180}
-          height={60}
-          className="object-contain w-[100px] h-auto sm:w-[130px] md:w-[150px] lg:w-[170px] xl:w-[190px]"
-          priority
-        />
-      </div>
-
       <div className="flex-1 flex items-center px-4 sm:px-6 lg:px-8 py-20 sm:py-24 md:py-32">
         <div className="max-w-7xl mx-auto w-full relative z-10">
           {/* Centered content */}

@@ -11,9 +11,7 @@ gsap.registerPlugin(ScrollTrigger)
 export function CaseStudySection() {
   const [isModalOpen, setIsModalOpen] = useState(false)
   const titleRef = useRef<HTMLDivElement>(null)
-  const circleRef = useRef<HTMLDivElement>(null)
   const stepsRef = useRef<HTMLDivElement>(null)
-  const resultsRef = useRef<HTMLDivElement>(null)
   const badgeRef = useRef<HTMLDivElement>(null)
 
   const steps = [
@@ -35,7 +33,6 @@ export function CaseStudySection() {
     const ctx = gsap.context(() => {
       // Set initial state
       if (titleRef.current) gsap.set(titleRef.current, { opacity: 1 })
-      if (circleRef.current) gsap.set(circleRef.current, { opacity: 1 })
       if (badgeRef.current) gsap.set(badgeRef.current, { opacity: 1 })
 
       // Title animation
@@ -51,82 +48,29 @@ export function CaseStudySection() {
         }
       })
 
-      // Circle animation
-      gsap.from(circleRef.current, {
-        opacity: 0,
-        scale: 0.8,
-        duration: 0.8,
-        ease: "back.out(1.4)",
-        scrollTrigger: {
-          trigger: circleRef.current,
-          start: "top 80%",
-          toggleActions: "play none none none"
-        }
-      })
-
-      // Steps cards stagger with progressive scroll animation
+      // PayFit-style sticky cards animation - toutes les cards (process + results)
       if (stepsRef.current) {
         const cards = stepsRef.current.querySelectorAll(".step-card")
-        const arrows = stepsRef.current.querySelectorAll(".arrow-animation")
 
-        if (cards && cards.length > 0) {
-          gsap.set(cards, { opacity: 1 })
-          gsap.set(arrows, { opacity: 1 })
-
-          // Animate each card individually as user scrolls
-          cards.forEach((card) => {
-            gsap.from(card, {
-              opacity: 0,
-              y: 50,
-              scale: 0.95,
-              duration: 0.8,
-              ease: "power3.out",
+        cards.forEach((card) => {
+          // Animation d'entrée : de droite à gauche
+          gsap.fromTo(card,
+            {
+              x: 200,
+              opacity: 0
+            },
+            {
+              x: 0,
+              opacity: 1,
               scrollTrigger: {
                 trigger: card,
-                start: "top 85%",
+                start: "top 80%",
                 end: "top 50%",
-                toggleActions: "play none none none",
-                scrub: false
+                scrub: 1
               }
-            })
-          })
-
-          // Animate arrows with delay after their card
-          arrows.forEach((arrow) => {
-            gsap.from(arrow, {
-              opacity: 0,
-              x: -20,
-              duration: 0.6,
-              ease: "power2.out",
-              scrollTrigger: {
-                trigger: arrow,
-                start: "top 85%",
-                toggleActions: "play none none none"
-              }
-            })
-          })
-        }
-      }
-
-      // Results cards
-      if (resultsRef.current) {
-        const cards = resultsRef.current.querySelectorAll(".result-card")
-        if (cards && cards.length > 0) {
-          gsap.set(cards, { opacity: 1 })
-          gsap.from(cards, {
-            opacity: 0,
-            y: 30,
-            scale: 0.95,
-            duration: 0.6,
-            stagger: 0.15,
-            ease: "back.out(1.3)",
-            scrollTrigger: {
-              trigger: resultsRef.current,
-              start: "top 80%",
-              toggleActions: "play none none none"
             }
-          })
-        }
+          )
+        })
       }
 
       // Badge animation
@@ -147,9 +91,9 @@ export function CaseStudySection() {
   }, [])
 
   return (
-    <section className="relative py-12 md:py-16 lg:min-h-screen lg:flex lg:items-center px-4 sm:px-6 lg:px-8 overflow-hidden bg-background">
+    <section className="relative py-12 md:py-16 px-4 sm:px-6 lg:px-8 overflow-hidden bg-background">
 
-      <div className="max-w-7xl mx-auto lg:w-full relative z-10">
+      <div className="max-w-7xl mx-auto w-full relative z-10">
         {/* Header */}
         <div ref={titleRef} className="text-center mb-8 sm:mb-12 lg:mb-16">
           <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-foreground mb-4 leading-tight">
@@ -166,127 +110,113 @@ export function CaseStudySection() {
           </p>
         </div>
 
-        {/* Process Steps with Arrows */}
-        <div className="relative max-w-5xl mx-auto mb-12 sm:mb-16">
-          <div ref={stepsRef} className="flex flex-col md:flex-row md:items-start md:justify-center gap-0 max-w-6xl mx-auto">
-            {steps.map((step, index) => (
-              <div key={index} className="flex flex-col md:flex-row items-center md:flex-1">
-                <div className="step-card bg-card border border-border rounded-2xl p-5 sm:p-6 hover:shadow-lg transition-all duration-300 group w-full">
-                  <div className="flex items-start gap-4">
-                    <div className="flex-shrink-0">
-                      <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-gradient-to-r from-blue-500 via-blue-600 to-primary flex items-center justify-center text-white font-bold shadow-lg group-hover:scale-110 transition-transform duration-300">
-                        {index + 1}
-                      </div>
-                    </div>
-                    <div>
-                      <h3 className="text-base sm:text-lg font-bold text-foreground mb-2 sm:mb-3">
-                        {step.title}
-                      </h3>
-                      <p className="text-xs sm:text-sm text-foreground/80 leading-relaxed">
-                        {step.description}
-                      </p>
+        {/* Process Steps - Sticky Cards (PayFit style) */}
+        <div ref={stepsRef} className="w-full max-w-4xl mx-auto mb-12 sm:mb-16" style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+          {steps.map((step, index) => (
+            <div
+              key={index}
+              className="step-card flex items-center justify-center"
+            >
+              <div className="bg-card border border-border rounded-2xl p-6 sm:p-8 lg:p-10 shadow-xl w-full">
+                <div className="flex items-start gap-4 sm:gap-6">
+                  <div className="flex-shrink-0">
+                    <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-gradient-to-r from-blue-500 via-blue-600 to-primary flex items-center justify-center text-white font-bold text-xl sm:text-2xl shadow-lg">
+                      {index + 1}
                     </div>
                   </div>
+                  <div className="flex-1">
+                    <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-foreground mb-3 sm:mb-4">
+                      {step.title}
+                    </h3>
+                    <p className="text-base sm:text-lg text-foreground/80 leading-relaxed">
+                      {step.description}
+                    </p>
+                  </div>
                 </div>
+              </div>
+            </div>
+          ))}
 
-                {/* Animated Arrow between steps */}
-                {index < steps.length - 1 && (
-                  <div className="arrow-animation flex items-center justify-center py-4 md:py-0 md:px-2 lg:px-4">
-                    <svg
-                      className="w-8 h-8 md:w-10 md:h-10 text-primary animate-bounce md:animate-pulse rotate-90 md:rotate-0"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      strokeWidth={2.5}
-                    >
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+          {/* Results Cards - ajoutées dans le même conteneur */}
+          <div className="step-card flex items-center justify-center">
+            <div className="bg-card border border-border rounded-2xl p-6 sm:p-8 lg:p-10 shadow-xl w-full">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-primary/10 flex items-center justify-center">
+                  <CheckCircle className="w-6 h-6 text-primary" />
+                </div>
+                <h3 className="text-xl sm:text-2xl font-bold text-foreground">
+                  Résultats Client
+                </h3>
+              </div>
+              <ul className="space-y-3">
+                <li className="flex items-start gap-3">
+                  <div className="w-5 h-5 rounded-full bg-accent/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <svg className="w-3 h-3 text-accent-foreground" fill="currentColor" viewBox="0 0 20 20">
+                      <path
+                        fillRule="evenodd"
+                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                        clipRule="evenodd"
+                      />
                     </svg>
                   </div>
-                )}
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Results Cards */}
-        <div ref={resultsRef} className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 max-w-5xl mx-auto">
-          {/* Client Results */}
-          <div className="result-card bg-card border border-border rounded-2xl p-6 sm:p-8 hover:shadow-lg transition-all duration-300">
-            <div className="flex items-center gap-3 mb-6">
-              <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-primary/10 flex items-center justify-center">
-                <CheckCircle className="w-6 h-6 text-primary" />
-              </div>
-              <h3 className="text-xl sm:text-2xl font-bold text-foreground">
-                Résultats Client
-              </h3>
+                  <span className="text-sm text-foreground">
+                    <strong className="text-primary">Offre fixe et stable</strong> jusqu'en 2029
+                  </span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <div className="w-5 h-5 rounded-full bg-accent/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <svg className="w-3 h-3 text-accent-foreground" fill="currentColor" viewBox="0 0 20 20">
+                      <path
+                        fillRule="evenodd"
+                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+                  </div>
+                  <span className="text-sm text-foreground">
+                    <strong className="text-primary font-bold">20 000 €</strong> d'économies par an garanties
+                  </span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <div className="w-5 h-5 rounded-full bg-accent/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <svg className="w-3 h-3 text-accent-foreground" fill="currentColor" viewBox="0 0 20 20">
+                      <path
+                        fillRule="evenodd"
+                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+                  </div>
+                  <span className="text-sm text-foreground">
+                    Suivi personnalisé et visibilité complète via notre plateforme multisite
+                  </span>
+                </li>
+              </ul>
             </div>
-            <ul className="space-y-3">
-              <li className="flex items-start gap-3">
-                <div className="w-5 h-5 rounded-full bg-accent/20 flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <svg className="w-3 h-3 text-accent-foreground" fill="currentColor" viewBox="0 0 20 20">
-                    <path
-                      fillRule="evenodd"
-                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                </div>
-                <span className="text-sm text-foreground">
-                  <strong className="text-primary">Offre fixe et stable</strong> jusqu'en 2028
-                </span>
-              </li>
-              <li className="flex items-start gap-3">
-                <div className="w-5 h-5 rounded-full bg-accent/20 flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <svg className="w-3 h-3 text-accent-foreground" fill="currentColor" viewBox="0 0 20 20">
-                    <path
-                      fillRule="evenodd"
-                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                </div>
-                <span className="text-sm text-foreground">
-                  <strong className="text-primary font-bold">20 000 €</strong> d'économies par an garanties
-                </span>
-              </li>
-              <li className="flex items-start gap-3">
-                <div className="w-5 h-5 rounded-full bg-accent/20 flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <svg className="w-3 h-3 text-accent-foreground" fill="currentColor" viewBox="0 0 20 20">
-                    <path
-                      fillRule="evenodd"
-                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                </div>
-                <span className="text-sm text-foreground">
-                  Suivi personnalisé et visibilité complète via notre plateforme multisite
-                </span>
-              </li>
-            </ul>
           </div>
 
-          {/* Partner Results */}
-          <div className="result-card bg-card border border-border rounded-2xl p-6 sm:p-8 hover:shadow-lg transition-all duration-300">
-            <div className="flex items-center gap-3 mb-6">
-              <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-gradient-to-r from-amber-400 via-yellow-500 to-amber-500 flex items-center justify-center">
-                <CheckCircle className="w-6 h-6 text-white" />
+          <div className="step-card flex items-center justify-center">
+            <div className="bg-card border border-border rounded-2xl p-6 sm:p-8 lg:p-10 shadow-xl w-full">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-gradient-to-r from-amber-400 via-yellow-500 to-amber-500 flex items-center justify-center">
+                  <CheckCircle className="w-6 h-6 text-white" />
+                </div>
+                <h3 className="text-xl sm:text-2xl font-bold text-foreground">
+                  Rémunération Courtier
+                </h3>
               </div>
-              <h3 className="text-xl sm:text-2xl font-bold text-foreground">
-                Rémunération Courtier
-              </h3>
-            </div>
-            <div className="text-center py-4">
-              <div className="text-4xl sm:text-5xl font-bold bg-gradient-to-r from-amber-400 via-yellow-500 to-amber-500 bg-clip-text text-transparent mb-2">
-                +7 800 €
+              <div className="text-center py-4">
+                <div className="text-4xl sm:text-5xl font-bold bg-gradient-to-r from-amber-400 via-yellow-500 to-amber-500 bg-clip-text text-transparent mb-2">
+                  +7 800 €
+                </div>
+                <p className="text-sm text-muted-foreground">
+                  Commission perçue pour ce dossier
+                </p>
               </div>
-              <p className="text-sm text-muted-foreground">
-                Commission perçue pour ce dossier
+              <p className="text-sm text-foreground/80 mt-4 text-center">
+                Un seul dossier, des revenus récurrents garantis
               </p>
             </div>
-            <p className="text-sm text-foreground/80 mt-4 text-center">
-              Un seul dossier, des revenus récurrents garantis
-            </p>
           </div>
         </div>
 

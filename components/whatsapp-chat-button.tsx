@@ -2,8 +2,8 @@
 
 export function WhatsAppChatButton() {
   // Numéro WhatsApp à configurer - format international sans + ni espaces
-  // Exemple: pour +33 1 89 70 56 32, utiliser 33189705632
-  const phoneNumber = "33189705632" // À personnaliser avec votre numéro
+  // Exemple: pour +33 7 67 44 87 34, utiliser 33767448734
+  const phoneNumber = "33767448734" // À personnaliser avec votre numéro
   const message = "Bonjour, je souhaite avoir plus d'informations sur vos services." // Message pré-rempli
 
   const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`

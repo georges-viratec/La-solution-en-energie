@@ -7,10 +7,12 @@ import { CaseStudySection } from "@/components/sections/case-study-section"
 import { FaqSection } from "@/components/sections/faq-section"
 import { FooterSection } from "@/components/sections/footer-section"
 import { WhatsAppChatButton } from "@/components/whatsapp-chat-button"
+import { FixedLogo } from "@/components/fixed-logo"
 
 export default function Home() {
   return (
     <>
+      <FixedLogo />
       <main className="min-h-screen" style={{ backgroundColor: '#f6fafd' }}>
         <HeroSection />
         <PillarsSection />
