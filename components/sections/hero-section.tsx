@@ -181,9 +181,16 @@ export function HeroSection() {
                     className="w-5 h-5 sm:w-7 sm:h-7 fill-amber-400 text-amber-400"
                   />
                 ))}
-                <Star
-                  className="w-5 h-5 sm:w-7 sm:h-7 fill-gray-300 text-gray-300"
-                />
+                <div className="relative w-5 h-5 sm:w-7 sm:h-7">
+                  <Star
+                    className="absolute inset-0 w-5 h-5 sm:w-7 sm:h-7 fill-gray-300 text-gray-300"
+                  />
+                  <div className="absolute inset-0 overflow-hidden" style={{ width: '70%' }}>
+                    <Star
+                      className="w-5 h-5 sm:w-7 sm:h-7 fill-amber-400 text-amber-400"
+                    />
+                  </div>
+                </div>
               </div>
               <div className="flex flex-col sm:flex-row items-center gap-1 sm:gap-2 text-gray-700">
                 <span className="text-xl sm:text-3xl font-bold">4.7/5</span>
