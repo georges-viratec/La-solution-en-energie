@@ -12,7 +12,7 @@ export function CaseStudySection() {
   const [isModalOpen, setIsModalOpen] = useState(false)
   const titleRef = useRef<HTMLDivElement>(null)
   const stepsRef = useRef<HTMLDivElement>(null)
-  const badgeRef = useRef<HTMLDivElement>(null)
+  const badgeRef = useRef<HTMLButtonElement>(null)
 
   const steps = [
     {
