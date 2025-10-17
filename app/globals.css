@@ -5,7 +5,7 @@
 
 :root {
   /* Refined color scheme with better contrast and subtlety */
-  --background: oklch(0.99 0.002 85); /* Softer off-white */
+  --background: oklch(0.98 0.01 230); /* Light blue #f6fafd */
   --foreground: oklch(0.15 0 0); /* Deep black for text */
   --primary: oklch(0.42 0.18 255); /* Rich blue for CTAs */
   --primary-foreground: oklch(1 0 0); /* Pure white on blue */

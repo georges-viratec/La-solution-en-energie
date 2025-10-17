@@ -23,8 +23,9 @@ export function ProcessSection() {
   }, [])
 
   return (
-    <section className="py-12 md:py-16 lg:min-h-screen lg:flex lg:items-center px-4 sm:px-6 lg:px-8" style={{ backgroundColor: '#f6fafd' }}>
-      <div className="max-w-7xl mx-auto lg:w-full">
+    <section className="relative py-12 md:py-16 lg:min-h-screen lg:flex lg:items-center px-4 sm:px-6 lg:px-8 overflow-hidden bg-background">
+
+      <div className="max-w-7xl mx-auto lg:w-full relative z-10">
         <div className="text-center mb-6 sm:mb-8 lg:mb-6 px-2">
           <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-foreground mb-4 leading-tight">
             Notre Processus en
@@ -66,9 +67,8 @@ export function ProcessSection() {
                   scrollContainer.scrollTo({ left: cardWidth * index, behavior: "smooth" })
                 }
               }}
-              className={`h-2 rounded-full transition-all duration-300 ${
-                activeIndex === index ? "w-8 bg-primary" : "w-2 bg-primary/30"
-              }`}
+              className={`h-2 rounded-full transition-all duration-300 ${activeIndex === index ? "w-8 bg-primary" : "w-2 bg-primary/30"
+                }`}
               aria-label={`Aller à l'étape ${index + 1}`}
             />
           ))}

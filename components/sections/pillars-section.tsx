@@ -73,9 +73,7 @@ export function PillarsSection() {
   }, [])
 
   return (
-    <section className="relative py-12 md:py-16 lg:min-h-screen lg:flex lg:items-center px-4 sm:px-6 lg:px-8 overflow-hidden" style={{ backgroundColor: '#f6fafd' }}>
-      {/* Subtle gradient background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5 pointer-events-none" />
+    <section className="relative py-12 md:py-16 lg:min-h-screen lg:flex lg:items-center px-4 sm:px-6 lg:px-8 overflow-hidden bg-background">
 
       <div ref={sectionRef} className="max-w-7xl mx-auto relative z-10 lg:w-full">
         <div ref={titleRef} className="text-center mb-6 sm:mb-8 lg:mb-6 px-2">
@@ -119,9 +117,8 @@ export function PillarsSection() {
                   scrollContainer.scrollTo({ left: cardWidth * index, behavior: "smooth" })
                 }
               }}
-              className={`h-2 rounded-full transition-all duration-300 ${
-                activeIndex === index ? "w-8 bg-primary" : "w-2 bg-primary/30"
-              }`}
+              className={`h-2 rounded-full transition-all duration-300 ${activeIndex === index ? "w-8 bg-primary" : "w-2 bg-primary/30"
+                }`}
               aria-label={`Aller au pilier ${index + 1}`}
             />
           ))}

@@ -123,8 +123,9 @@ export function CaseStudySection() {
   }, [])
 
   return (
-    <section className="py-12 md:py-16 lg:min-h-screen lg:flex lg:items-center px-4 sm:px-6 lg:px-8" style={{ backgroundColor: '#f6fafd' }}>
-      <div className="max-w-7xl mx-auto lg:w-full">
+    <section className="relative py-12 md:py-16 lg:min-h-screen lg:flex lg:items-center px-4 sm:px-6 lg:px-8 overflow-hidden bg-background">
+
+      <div className="max-w-7xl mx-auto lg:w-full relative z-10">
         {/* Header */}
         <div ref={titleRef} className="text-center mb-8 sm:mb-12 lg:mb-16">
           <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-foreground mb-4 leading-tight">

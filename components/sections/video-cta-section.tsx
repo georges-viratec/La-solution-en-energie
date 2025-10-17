@@ -55,8 +55,9 @@ export function VideoCtaSection() {
   }, [])
 
   return (
-    <section className="py-12 md:py-16 lg:min-h-screen lg:flex lg:items-center px-4 sm:px-6 lg:px-8" style={{ backgroundColor: '#f6fafd' }}>
-      <div className="max-w-4xl mx-auto text-center lg:w-full px-2">
+    <section className="relative py-12 md:py-16 lg:min-h-screen lg:flex lg:items-center px-4 sm:px-6 lg:px-8 overflow-hidden bg-background">
+
+      <div className="max-w-4xl mx-auto text-center lg:w-full px-2 relative z-10">
         <h2 ref={titleRef} className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-foreground mb-4 sm:mb-6 leading-tight">
           Prêt à développer
           <br className="hidden sm:block" />
@@ -74,6 +75,8 @@ export function VideoCtaSection() {
             className="w-full h-auto rounded-2xl"
             controls
             preload="metadata"
+            poster="/video-preview.jpg"
+            playsInline
             style={{ maxHeight: '60vh' }}
           >
             <source src="/Multiclip_16_10_2025.mp4" type="video/mp4" />

@@ -132,8 +132,9 @@ export function HeroSection() {
   }, [])
 
   return (
-    <section className="relative overflow-hidden min-h-screen px-4 sm:px-6 lg:px-8 flex items-center py-20 sm:py-0 " style={{ backgroundColor: '#f6fafd' }}>
-      <div className="max-w-7xl mx-auto w-full">
+    <section className="relative overflow-hidden min-h-screen px-4 sm:px-6 lg:px-8 flex items-center py-20 sm:py-0 bg-background">
+
+      <div className="max-w-7xl mx-auto w-full relative z-10">
         {/* Logo top left - optimisé mobile */}
         <div ref={logoRef} className="absolute top-4 left-4 sm:top-8 sm:left-6 lg:left-8 z-10">
           <Image
@@ -180,8 +181,8 @@ export function HeroSection() {
                   }`}>
                   <AnimatedCounter
                     end={stat.value}
-                    prefix={stat.prefix}
-                    suffix={stat.suffix}
+                    prefix={'prefix' in stat ? stat.prefix : undefined}
+                    suffix={'suffix' in stat ? stat.suffix : undefined}
                   />
                 </div>
                 <p className="text-xs sm:text-sm lg:text-base text-muted-foreground font-medium">
