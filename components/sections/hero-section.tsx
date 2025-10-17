@@ -132,24 +132,25 @@ export function HeroSection() {
   }, [])
 
   return (
-    <section className="relative overflow-hidden min-h-screen px-4 sm:px-6 lg:px-8 flex items-center py-20 sm:py-0 bg-background">
+    <section className="relative overflow-hidden min-h-screen flex flex-col bg-background">
+      {/* Logo en haut à gauche - position absolue par rapport à la section */}
+      <div ref={logoRef} className="absolute top-4 left-4 sm:top-6 sm:left-8 md:top-8 md:left-12 lg:top-8 lg:left-16 z-50 mb-8 sm:mb-10 md:mb-12">
+        <Image
+          src="/logo.png"
+          alt="La Solution en Énergie"
+          width={180}
+          height={60}
+          className="object-contain w-[100px] h-auto sm:w-[130px] md:w-[150px] lg:w-[170px] xl:w-[190px]"
+          priority
+        />
+      </div>
 
-      <div className="max-w-7xl mx-auto w-full relative z-10">
-        {/* Logo top left - optimisé mobile */}
-        <div ref={logoRef} className="absolute top-4 left-4 sm:top-8 sm:left-6 lg:left-8 z-10">
-          <Image
-            src="/logo.png"
-            alt="La Solution en Énergie"
-            width={80}
-            height={27}
-            className="object-contain w-[80px] h-auto sm:w-[100px] md:w-[110px] lg:w-[120px]"
-          />
-        </div>
-
-        {/* Centered content */}
-        <div className="text-center space-y-4 sm:space-y-6 max-w-5xl mx-auto pt-16 sm:pt-0">
+      <div className="flex-1 flex items-center px-4 sm:px-6 lg:px-8 py-20 sm:py-24 md:py-32">
+        <div className="max-w-7xl mx-auto w-full relative z-10">
+          {/* Centered content */}
+          <div className="text-center space-y-4 sm:space-y-6 max-w-5xl mx-auto pt-20 sm:pt-24 md:pt-20 lg:pt-0">
           {/* Main headline */}
-          <h1 ref={titleRef} className="text-4xl sm:text-6xl lg:text-7xl xl:text-8xl font-bold text-foreground leading-[1.1] tracking-tight px-2">
+          <h1 ref={titleRef} className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-foreground leading-[1.1] tracking-tight px-2">
             Devenez courtier en{" "}
             <span className="bg-gradient-to-r from-primary via-blue-600 to-accent-foreground bg-clip-text text-transparent">
               énergie
@@ -225,6 +226,7 @@ export function HeroSection() {
               <ArrowRight className="ml-2 w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform duration-300" />
             </Button>
           </div>
+        </div>
         </div>
       </div>
 

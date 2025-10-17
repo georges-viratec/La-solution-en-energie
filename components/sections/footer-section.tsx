@@ -65,11 +65,10 @@ export function FooterSection() {
               <Image
                 src="/logo.png"
                 alt="La Solution en Énergie"
-                width={32}
-                height={32}
-                className="object-contain sm:w-[40px] sm:h-[40px]"
+                width={120}
+                height={40}
+                className="object-contain w-[90px] h-auto sm:w-[100px] md:w-[110px]"
               />
-              <span className="text-lg sm:text-xl font-bold text-foreground">La Solution en Énergie</span>
             </div>
             <p className="text-sm sm:text-base text-muted-foreground mb-4 sm:mb-6 max-w-md">
               Votre partenaire de confiance pour optimiser les contrats énergétiques des entreprises et développer vos

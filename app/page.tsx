@@ -6,6 +6,7 @@ import { TestimonialsSection } from "@/components/sections/testimonials-section"
 import { CaseStudySection } from "@/components/sections/case-study-section"
 import { FaqSection } from "@/components/sections/faq-section"
 import { FooterSection } from "@/components/sections/footer-section"
+import { WhatsAppChatButton } from "@/components/whatsapp-chat-button"
 
 export default function Home() {
   return (
@@ -20,6 +21,7 @@ export default function Home() {
         <FaqSection />
       </main>
       <FooterSection />
+      <WhatsAppChatButton />
     </>
   )
 }
