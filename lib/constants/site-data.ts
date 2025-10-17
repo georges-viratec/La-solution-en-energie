@@ -193,16 +193,16 @@ export const CONTACT_METHODS = [
   {
     type: "phone",
     title: "Téléphone",
-    value: "01 84 88 32 45",
-    href: "tel:0184883245",
+    value: "01 89 70 56 32",
+    href: "tel:0189705632",
     subtitle: "Lun-Ven 9h-18h",
     iconColor: "green"
   },
   {
     type: "email",
     title: "Email",
-    value: "contact@courtier-energie-pro.fr",
-    href: "mailto:contact@courtier-energie-pro.fr",
+    value: "recrutement@lasolutionenenergie.fr",
+    href: "mailto:recrutement@lasolutionenenergie.fr",
     subtitle: "Réponse sous 4h",
     iconColor: "amber"
   },
@@ -210,7 +210,7 @@ export const CONTACT_METHODS = [
     type: "chat",
     title: "Chat en ligne",
     value: "Support instantané",
-    href: "mailto:contact@courtier-energie-pro.fr?subject=Support%20Chat%20en%20ligne",
+    href: "mailto:recrutement@lasolutionenenergie.fr?subject=Support%20Chat%20en%20ligne",
     subtitle: "Disponible maintenant",
     iconColor: "green"
   }

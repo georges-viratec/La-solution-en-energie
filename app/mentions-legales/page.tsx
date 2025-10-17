@@ -28,34 +28,51 @@ export default function MentionsLegalesPage() {
           <section className="mb-8">
             <h2 className="text-2xl font-bold text-foreground mb-4">1. Éditeur du site</h2>
             <div className="text-foreground/80 space-y-2">
-              <p><strong>Raison sociale :</strong> La Solution en Énergie</p>
-              <p><strong>Forme juridique :</strong> [À COMPLÉTER - ex: SAS, SARL, etc.]</p>
-              <p><strong>Capital social :</strong> [À COMPLÉTER]</p>
+              <p><strong>Raison sociale :</strong> LA SOLUTION EN ENERGIE</p>
+              <p><strong>Forme juridique :</strong> SAS, société par actions simplifiée</p>
+              <p><strong>Capital social :</strong> 1 000,00 €</p>
               <p><strong>Siège social :</strong> 17 rue Louise Michel, 92300 Levallois-Perret</p>
-              <p><strong>SIRET :</strong> 951 327 253</p>
-              <p><strong>RCS :</strong> [À COMPLÉTER]</p>
-              <p><strong>Numéro TVA intracommunautaire :</strong> [À COMPLÉTER]</p>
+              <p><strong>SIREN :</strong> 951 327 253</p>
+              <p><strong>SIRET (siège) :</strong> 951 327 253 00039</p>
+              <p><strong>RCS :</strong> 951 327 253 R.C.S. Nanterre</p>
+              <p><strong>Numéro TVA intracommunautaire :</strong> FR47951327253</p>
+              <p><strong>Code NAF/APE :</strong> 46.18Z (Intermédiaires spécialisés dans le commerce d'autres produits spécifiques)</p>
               <p><strong>Téléphone :</strong> 01 89 70 56 32</p>
-              <p><strong>Email :</strong> recrutement@lasolutionenenergie.fr</p>
-              <p><strong>Directeur de la publication :</strong> [À COMPLÉTER - Nom et Prénom]</p>
+              <p><strong>Email :</strong> contact@lasolutionenenergie.fr</p>
+              <p><strong>Dirigeants :</strong> BENAYOUN Elone, ABIHSSIRA Jeremy</p>
+            </div>
+          </section>
+
+          {/* Conception et développement */}
+          <section className="mb-8">
+            <h2 className="text-2xl font-bold text-foreground mb-4">2. Conception et développement</h2>
+            <div className="text-foreground/80 space-y-2">
+              <p>Le site a été conçu et développé par :</p>
+              <p><strong>VIRATEC</strong></p>
+              <p><strong>Forme juridique :</strong> SAS, société par actions simplifiée</p>
+              <p><strong>Siège social :</strong> 229 rue Saint-Honoré, 75001 Paris</p>
+              <p><strong>SIREN :</strong> 933 045 411</p>
+              <p><strong>RCS :</strong> 933 045 411 R.C.S. Paris</p>
+              <p><strong>Dirigeant :</strong> Georges Ramirez</p>
+              <p>Site web : <a href="https://viratec.fr" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">viratec.fr</a></p>
             </div>
           </section>
 
           {/* Hébergeur */}
           <section className="mb-8">
-            <h2 className="text-2xl font-bold text-foreground mb-4">2. Hébergement</h2>
+            <h2 className="text-2xl font-bold text-foreground mb-4">3. Hébergement</h2>
             <div className="text-foreground/80 space-y-2">
               <p>Le site est hébergé par :</p>
-              <p><strong>Vercel Inc.</strong></p>
-              <p>340 S Lemon Ave #4133</p>
-              <p>Walnut, CA 91789, USA</p>
-              <p>Site web : <a href="https://vercel.com" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">vercel.com</a></p>
+              <p><strong>LWS (Line Web Services)</strong></p>
+              <p>10 rue de Penthièvre</p>
+              <p>75008 Paris, France</p>
+              <p>Site web : <a href="https://www.lws.fr" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">www.lws.fr</a></p>
             </div>
           </section>
 
           {/* Propriété intellectuelle */}
           <section className="mb-8">
-            <h2 className="text-2xl font-bold text-foreground mb-4">3. Propriété intellectuelle</h2>
+            <h2 className="text-2xl font-bold text-foreground mb-4">4. Propriété intellectuelle</h2>
             <div className="text-foreground/80 space-y-4">
               <p>
                 L'ensemble de ce site relève de la législation française et internationale sur le droit d'auteur et la propriété intellectuelle.
@@ -75,14 +92,14 @@ export default function MentionsLegalesPage() {
 
           {/* Protection des données */}
           <section className="mb-8">
-            <h2 className="text-2xl font-bold text-foreground mb-4">4. Protection des données personnelles</h2>
+            <h2 className="text-2xl font-bold text-foreground mb-4">5. Protection des données personnelles</h2>
             <div className="text-foreground/80 space-y-4">
               <p>
                 Conformément au Règlement Général sur la Protection des Données (RGPD) et à la loi Informatique et Libertés,
                 vous disposez d'un droit d'accès, de rectification, de suppression et d'opposition aux données personnelles vous concernant.
               </p>
               <p>
-                Pour exercer ces droits, vous pouvez nous contacter par email à : contact@courtier-energie-pro.fr
+                Pour exercer ces droits, vous pouvez nous contacter par email à : recrutement@lasolutionenenergie.fr
               </p>
               <p>
                 Pour plus d'informations, consultez notre <Link href="/politique-confidentialite" className="text-primary hover:underline">Politique de confidentialité</Link>.
@@ -92,7 +109,7 @@ export default function MentionsLegalesPage() {
 
           {/* Cookies */}
           <section className="mb-8">
-            <h2 className="text-2xl font-bold text-foreground mb-4">5. Cookies</h2>
+            <h2 className="text-2xl font-bold text-foreground mb-4">6. Cookies</h2>
             <div className="text-foreground/80 space-y-4">
               <p>
                 Le site utilise des cookies pour améliorer l'expérience utilisateur et analyser le trafic.
@@ -105,7 +122,7 @@ export default function MentionsLegalesPage() {
 
           {/* Responsabilité */}
           <section className="mb-8">
-            <h2 className="text-2xl font-bold text-foreground mb-4">6. Limitation de responsabilité</h2>
+            <h2 className="text-2xl font-bold text-foreground mb-4">7. Limitation de responsabilité</h2>
             <div className="text-foreground/80 space-y-4">
               <p>
                 La Solution en Énergie s'efforce d'assurer au mieux de ses possibilités, l'exactitude et la mise à jour
@@ -124,7 +141,7 @@ export default function MentionsLegalesPage() {
 
           {/* Liens hypertextes */}
           <section className="mb-8">
-            <h2 className="text-2xl font-bold text-foreground mb-4">7. Liens hypertextes</h2>
+            <h2 className="text-2xl font-bold text-foreground mb-4">8. Liens hypertextes</h2>
             <div className="text-foreground/80 space-y-4">
               <p>
                 Le site peut contenir des liens hypertextes vers d'autres sites présents sur le réseau Internet.
@@ -139,7 +156,7 @@ export default function MentionsLegalesPage() {
 
           {/* Droit applicable */}
           <section className="mb-8">
-            <h2 className="text-2xl font-bold text-foreground mb-4">8. Droit applicable et juridiction compétente</h2>
+            <h2 className="text-2xl font-bold text-foreground mb-4">9. Droit applicable et juridiction compétente</h2>
             <div className="text-foreground/80 space-y-4">
               <p>
                 Les présentes mentions légales sont régies par le droit français.

@@ -28,10 +28,17 @@ export default function PolitiqueConfidentialitePage() {
           <section className="mb-8">
             <div className="text-foreground/80 space-y-4">
               <p>
-                La Solution en Énergie accorde une grande importance à la protection de vos données personnelles.
-                Cette politique de confidentialité vous informe de la manière dont nous collectons, utilisons et protégeons
-                vos informations conformément au Règlement Général sur la Protection des Données (RGPD) et à la loi Informatique et Libertés.
+                Vous êtes sur le site www.lasolutionenenergie.fr. Nous attachons une grande importance au respect de votre vie privée.
+                Dans le cadre du Règlement Général sur la Protection des Données (RGPD), notre société a mis en œuvre tous les moyens
+                nécessaires pour vous assurer la protection de vos données personnelles lors de votre navigation sur les pages de notre site Internet.
               </p>
+              <p>
+                Pour toute question en lien avec notre politique de confidentialité, vous pouvez contacter La solution en énergie :
+              </p>
+              <ul className="list-disc list-inside space-y-1 ml-4">
+                <li>Par téléphone au 01 89 70 56 32</li>
+                <li>Par mail à contact@lasolutionenenergie.fr</li>
+              </ul>
             </div>
           </section>
 
@@ -39,9 +46,12 @@ export default function PolitiqueConfidentialitePage() {
           <section className="mb-8">
             <h2 className="text-2xl font-bold text-foreground mb-4">1. Responsable du traitement des données</h2>
             <div className="text-foreground/80 space-y-2">
-              <p><strong>Raison sociale :</strong> La Solution en Énergie</p>
+              <p><strong>Raison sociale :</strong> LA SOLUTION EN ENERGIE</p>
+              <p><strong>Forme juridique :</strong> SAS, société par actions simplifiée</p>
               <p><strong>Siège social :</strong> 17 rue Louise Michel, 92300 Levallois-Perret</p>
-              <p><strong>Email :</strong> recrutement@lasolutionenenergie.fr</p>
+              <p><strong>SIREN :</strong> 951 327 253</p>
+              <p><strong>RCS :</strong> 951 327 253 R.C.S. Nanterre</p>
+              <p><strong>Email :</strong> contact@lasolutionenenergie.fr</p>
               <p><strong>Téléphone :</strong> 01 89 70 56 32</p>
             </div>
           </section>
@@ -53,12 +63,16 @@ export default function PolitiqueConfidentialitePage() {
               <p>Nous collectons les données personnelles suivantes :</p>
 
               <h3 className="text-xl font-semibold text-foreground mt-6 mb-3">Via le formulaire de contact / candidature</h3>
+              <p>Les informations collectées le sont car elles sont nécessaires à la réalisation de nos Services. Ce sont celles que tout Client ou Utilisateur de nos services a volontairement transmis notamment par l'intermédiaire d'un formulaire de contact. Ces données consistent essentiellement en :</p>
               <ul className="list-disc list-inside space-y-2 ml-4">
-                <li>Nom et prénom</li>
-                <li>Adresse email</li>
-                <li>Numéro de téléphone</li>
-                <li>CV (fichier joint optionnel)</li>
+                <li>Des informations relatives à l'état civil (Nom, prénom)</li>
+                <li>Vos coordonnées (numéro de téléphone, adresse email)</li>
               </ul>
+              <p className="mt-4">
+                Les données obligatoires collectées via les formulaires de contact sont signalées par un astérisque « * ».
+                En l'absence de réponse ou en cas d'informations erronées, nous ne serons pas en mesure de traiter votre demande
+                et vous ne pourrez en conséquence avoir accès à nos services.
+              </p>
 
               <h3 className="text-xl font-semibold text-foreground mt-6 mb-3">Données de navigation</h3>
               <ul className="list-disc list-inside space-y-2 ml-4">
@@ -75,14 +89,15 @@ export default function PolitiqueConfidentialitePage() {
           <section className="mb-8">
             <h2 className="text-2xl font-bold text-foreground mb-4">3. Finalités du traitement</h2>
             <div className="text-foreground/80 space-y-4">
-              <p>Vos données personnelles sont collectées et traitées pour les finalités suivantes :</p>
+              <p>Les données personnelles communiquées sont utilisées soit pour répondre aux demandes formulées par vos soins, soit pour vous permettre d'accéder à nos Services. Nous pourrons également utiliser vos données afin de vous communiquer toute offre promotionnelle, invitations à des événements ou toute autre initiative.</p>
+              <p className="mt-4">Vos données personnelles sont collectées et traitées pour les finalités suivantes :</p>
               <ul className="list-disc list-inside space-y-2 ml-4">
-                <li>Traitement de vos demandes de contact et de partenariat</li>
+                <li>Traitement de vos demandes de contact pour devenir partenaire/apporteur d'affaires</li>
                 <li>Réponse à vos questions et demandes d'information</li>
-                <li>Gestion de votre candidature</li>
+                <li>Gestion de votre candidature pour rejoindre notre réseau</li>
                 <li>Amélioration de nos services</li>
                 <li>Analyse statistique de la fréquentation du site</li>
-                <li>Envoi d'informations commerciales (avec votre consentement préalable)</li>
+                <li>Envoi d'informations commerciales concernant nos opportunités de partenariat (avec votre consentement préalable)</li>
               </ul>
             </div>
           </section>
@@ -105,14 +120,22 @@ export default function PolitiqueConfidentialitePage() {
           <section className="mb-8">
             <h2 className="text-2xl font-bold text-foreground mb-4">5. Destinataires des données</h2>
             <div className="text-foreground/80 space-y-4">
-              <p>Vos données personnelles sont destinées :</p>
-              <ul className="list-disc list-inside space-y-2 ml-4">
-                <li>Aux services internes de La Solution en Énergie habilités à les traiter</li>
-                <li>À nos prestataires de services (hébergement, email, analytics) qui agissent en qualité de sous-traitants</li>
-                <li>Aux autorités compétentes sur requête légale</li>
-              </ul>
+              <p>
+                Les données personnelles que nous collectons sont à destination de LA SOLUTION EN ENERGIE à des fins de prospection commerciale.
+                Toutefois, elles pourront également être communiquées à nos services d'hébergement ainsi qu'à d'éventuels autres sous-traitants
+                (fournisseurs de systèmes informatiques et logiciels…).
+              </p>
+              <p>
+                Étant ici précisé que ces sous-traitants sont soumis au respect du RGPD et se situent à l'intérieur de l'Union Européenne
+                et de l'Espace Economique Européen. Aucune de vos données à caractère personnel n'est transférée en dehors de l'Union Européenne
+                et de l'Espace Economique Européen dans le cadre de notre traitement.
+              </p>
+              <p>
+                Elles pourront être communiquées à des tiers autres que ceux listés ci-dessus, sous réserve d'avoir obtenu votre consentement préalable.
+              </p>
               <p className="mt-4">
-                Nous ne vendons ni ne louons vos données personnelles à des tiers à des fins commerciales.
+                Aucune information personnelle de l'utilisateur du site www.lasolutionenenergie.fr n'est publiée à l'insu de l'utilisateur,
+                échangée, transférée, cédée ou vendue sur un support quelconque à des tiers.
               </p>
             </div>
           </section>
@@ -121,16 +144,19 @@ export default function PolitiqueConfidentialitePage() {
           <section className="mb-8">
             <h2 className="text-2xl font-bold text-foreground mb-4">6. Durée de conservation</h2>
             <div className="text-foreground/80 space-y-4">
-              <p>Vos données personnelles sont conservées pendant :</p>
-              <ul className="list-disc list-inside space-y-2 ml-4">
-                <li><strong>Demandes de contact :</strong> 3 ans à compter du dernier contact</li>
-                <li><strong>Candidatures :</strong> 2 ans à compter de la réception</li>
-                <li><strong>Cookies :</strong> Maximum 13 mois (voir notre <Link href="/cookies" className="text-primary hover:underline">Politique de cookies</Link>)</li>
-                <li><strong>Documents comptables :</strong> 10 ans conformément aux obligations légales</li>
-              </ul>
-              <p className="mt-4">
-                À l'issue de ces délais, vos données sont supprimées ou anonymisées.
+              <p>
+                Les données personnelles que nous collectons sont conservées durant toute notre relation commerciale.
+                Cette durée tient compte des obligations légales propres à chaque donnée personnelle.
               </p>
+              <p className="mt-4">
+                À défaut de relation commerciale établie, les données sont conservées pendant une durée de 2 ans à compter de leur obtention.
+              </p>
+              <p className="mt-4">Vos données personnelles sont conservées pendant :</p>
+              <ul className="list-disc list-inside space-y-2 ml-4">
+                <li><strong>Demandes de contact :</strong> 2 ans à compter du dernier contact</li>
+                <li><strong>Candidatures pour devenir partenaire :</strong> 2 ans à compter de la réception</li>
+                <li><strong>Cookies :</strong> Maximum 13 mois (voir notre <Link href="/cookies" className="text-primary hover:underline">Politique de cookies</Link>)</li>
+              </ul>
             </div>
           </section>
 
@@ -194,9 +220,9 @@ export default function PolitiqueConfidentialitePage() {
                   Pour exercer vos droits, vous pouvez nous contacter :
                 </p>
                 <ul className="list-disc list-inside space-y-1 ml-4 mt-2">
-                  <li>Par email : contact@courtier-energie-pro.fr</li>
-                  <li>Par téléphone : 01 84 88 32 45</li>
-                  <li>Par courrier : [À COMPLÉTER - Adresse complète]</li>
+                  <li>Par email : contact@lasolutionenenergie.fr</li>
+                  <li>Par téléphone : 01 89 70 56 32</li>
+                  <li>Par courrier : LA SOLUTION EN ENERGIE, 17 rue Louise Michel, 92300 Levallois-Perret</li>
                 </ul>
                 <p className="mt-3 text-sm">
                   Nous nous engageons à vous répondre dans un délai d'un mois maximum.
@@ -238,29 +264,43 @@ export default function PolitiqueConfidentialitePage() {
 
           {/* Modifications */}
           <section className="mb-8">
-            <h2 className="text-2xl font-bold text-foreground mb-4">11. Modifications de la politique</h2>
+            <h2 className="text-2xl font-bold text-foreground mb-4">11. Mise à jour de notre Politique</h2>
             <div className="text-foreground/80 space-y-4">
               <p>
-                Nous nous réservons le droit de modifier cette politique de confidentialité à tout moment.
-                Toute modification sera publiée sur cette page avec une nouvelle date de mise à jour.
-                Nous vous encourageons à consulter régulièrement cette page.
+                La présente Politique est un document évolutif. Elle fait partie intégrante des conditions générales de vente
+                et d'utilisation de nos différents Services et est donc susceptible de faire l'objet de modifications.
+              </p>
+              <p className="mt-4">
+                Nous vous encourageons à consulter régulièrement cette page pour prendre connaissance des éventuelles modifications.
+              </p>
+            </div>
+          </section>
+
+          {/* Violation des données */}
+          <section className="mb-8">
+            <h2 className="text-2xl font-bold text-foreground mb-4">12. Violation de vos données à caractère personnel</h2>
+            <div className="text-foreground/80 space-y-4">
+              <p>
+                En cas de violation de vos données à caractère personnel constituant un risque à l'égard de votre vie personnelle
+                (perte d'intégrité, de disponibilité, de confidentialité), une notification à la CNIL sera transmise dans les meilleurs délais,
+                et ce, conformément à l'article 33 du RGPD.
               </p>
             </div>
           </section>
 
           {/* Contact DPO */}
           <section className="mb-8">
-            <h2 className="text-2xl font-bold text-foreground mb-4">12. Contact</h2>
+            <h2 className="text-2xl font-bold text-foreground mb-4">13. Contact</h2>
             <div className="text-foreground/80 space-y-4">
               <p>
                 Pour toute question concernant cette politique de confidentialité ou le traitement de vos données personnelles,
                 vous pouvez nous contacter :
               </p>
               <div className="mt-4 ml-4">
-                <p><strong>La Solution en Énergie</strong></p>
-                <p>Email : contact@courtier-energie-pro.fr</p>
-                <p>Téléphone : 01 84 88 32 45</p>
-                <p>Adresse : [À COMPLÉTER - Adresse complète]</p>
+                <p><strong>LA SOLUTION EN ENERGIE</strong></p>
+                <p>Email : contact@lasolutionenenergie.fr</p>
+                <p>Téléphone : 01 89 70 56 32</p>
+                <p>Adresse : 17 rue Louise Michel, 92300 Levallois-Perret</p>
               </div>
             </div>
           </section>

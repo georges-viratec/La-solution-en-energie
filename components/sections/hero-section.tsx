@@ -148,21 +148,21 @@ export function HeroSection() {
 
         {/* Centered content */}
         <div className="text-center space-y-4 sm:space-y-6 max-w-5xl mx-auto pt-16 sm:pt-0">
-          {/* Top badge */}
-          <div ref={badgeRef} className="inline-flex items-center gap-2 px-4 py-2 sm:px-6 sm:py-3 rounded-full bg-accent/10 border border-accent/20">
-            <span className="text-xs sm:text-sm font-medium text-foreground text-center">
-              Participez à la révolution du courtage en énergie
-            </span>
-          </div>
-
           {/* Main headline */}
-          <h1 ref={titleRef} className="text-3xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-foreground leading-[1.1] tracking-tight px-2">
+          <h1 ref={titleRef} className="text-4xl sm:text-6xl lg:text-7xl xl:text-8xl font-bold text-foreground leading-[1.1] tracking-tight px-2">
             Devenez courtier en{" "}
             <span className="bg-gradient-to-r from-primary via-blue-600 to-accent-foreground bg-clip-text text-transparent">
               énergie
             </span>{" "}
             indépendant
           </h1>
+
+          {/* Badge under title */}
+          <div ref={badgeRef} className="inline-flex items-center gap-2 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full bg-accent/10 border border-accent/20">
+            <span className="text-[10px] sm:text-xs font-medium text-foreground text-center">
+              Participez à la révolution du courtage en énergie
+            </span>
+          </div>
 
           {/* Subtitle */}
           <p ref={subtitleRef} className="text-sm sm:text-base lg:text-lg text-muted-foreground leading-relaxed max-w-4xl mx-auto px-2">
@@ -194,22 +194,22 @@ export function HeroSection() {
 
           {/* Rating */}
           <div ref={ratingRef} className="pt-2 sm:pt-4">
-            <div className="inline-flex items-center gap-3 sm:gap-4 px-6 py-3 sm:px-8 sm:py-4 ">
+            <div className="inline-flex flex-col sm:flex-row items-center gap-2 sm:gap-4 px-4 py-3 sm:px-8 sm:py-4">
               <div ref={starsRef} className="flex gap-1">
                 {[...Array(4)].map((_, i) => (
                   <Star
                     key={i}
-                    className="w-6 h-6 sm:w-7 sm:h-7 fill-amber-400 text-amber-400"
+                    className="w-5 h-5 sm:w-7 sm:h-7 fill-amber-400 text-amber-400"
                   />
                 ))}
                 <Star
-                  className="w-6 h-6 sm:w-7 sm:h-7 fill-gray-300 text-gray-300"
+                  className="w-5 h-5 sm:w-7 sm:h-7 fill-gray-300 text-gray-300"
                 />
               </div>
-              <div className="flex items-center gap-2 text-gray-700">
-                <span className="text-2xl sm:text-3xl font-bold">4.7/5</span>
-                <span className="text-lg sm:text-xl">•</span>
-                <span className="text-sm sm:text-base">Basé sur 100 avis clients</span>
+              <div className="flex flex-col sm:flex-row items-center gap-1 sm:gap-2 text-gray-700">
+                <span className="text-xl sm:text-3xl font-bold">4.7/5</span>
+                <span className="hidden sm:inline text-lg sm:text-xl">•</span>
+                <span className="text-xs sm:text-base">Basé sur 100+ avis clients</span>
               </div>
             </div>
           </div>

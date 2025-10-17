@@ -42,12 +42,13 @@ export default function CguPage() {
           <section className="mb-8">
             <h2 className="text-2xl font-bold text-foreground mb-4">1. Mentions légales</h2>
             <div className="text-foreground/80 space-y-2">
-              <p><strong>Éditeur du site :</strong> La Solution en Énergie</p>
-              <p><strong>Forme juridique :</strong> [À COMPLÉTER]</p>
-              <p><strong>Siège social :</strong> [À COMPLÉTER - Adresse complète]</p>
-              <p><strong>SIRET :</strong> [À COMPLÉTER]</p>
-              <p><strong>Email :</strong> contact@courtier-energie-pro.fr</p>
-              <p><strong>Téléphone :</strong> 01 84 88 32 45</p>
+              <p><strong>Éditeur du site :</strong> LA SOLUTION EN ENERGIE</p>
+              <p><strong>Forme juridique :</strong> SAS, société par actions simplifiée</p>
+              <p><strong>Siège social :</strong> 17 rue Louise Michel, 92300 Levallois-Perret</p>
+              <p><strong>SIREN :</strong> 951 327 253</p>
+              <p><strong>RCS :</strong> 951 327 253 R.C.S. Nanterre</p>
+              <p><strong>Email :</strong> contact@lasolutionenenergie.fr</p>
+              <p><strong>Téléphone :</strong> 01 89 70 56 32</p>
               <p className="mt-4">
                 Pour plus d'informations, consultez nos <Link href="/mentions-legales" className="text-primary hover:underline">Mentions légales</Link>.
               </p>
@@ -146,7 +147,7 @@ export default function CguPage() {
                 de suppression et d'opposition aux données personnelles vous concernant.
               </p>
               <p>
-                Pour exercer ces droits, contactez-nous à : contact@courtier-energie-pro.fr
+                Pour exercer ces droits, contactez-nous à : contact@lasolutionenenergie.fr
               </p>
             </div>
           </section>
@@ -175,7 +176,7 @@ export default function CguPage() {
               </p>
               <p>
                 La mise en place de liens hypertextes vers le site est soumise à l'autorisation préalable de l'éditeur.
-                Toute demande doit être adressée à : contact@courtier-energie-pro.fr
+                Toute demande doit être adressée à : contact@lasolutionenenergie.fr
               </p>
             </div>
           </section>
@@ -267,10 +268,10 @@ export default function CguPage() {
                 Pour toute question relative aux présentes CGU, vous pouvez nous contacter :
               </p>
               <div className="mt-4 ml-4">
-                <p><strong>La Solution en Énergie</strong></p>
-                <p>Email : contact@courtier-energie-pro.fr</p>
-                <p>Téléphone : 01 84 88 32 45</p>
-                <p>Adresse : [À COMPLÉTER - Adresse complète]</p>
+                <p><strong>LA SOLUTION EN ENERGIE</strong></p>
+                <p>Email : contact@lasolutionenenergie.fr</p>
+                <p>Téléphone : 01 89 70 56 32</p>
+                <p>Adresse : 17 rue Louise Michel, 92300 Levallois-Perret</p>
               </div>
             </div>
           </section>

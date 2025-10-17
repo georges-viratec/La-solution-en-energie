@@ -430,10 +430,10 @@ export default function CookiesPage() {
                 Pour toute question concernant notre politique de cookies, vous pouvez nous contacter :
               </p>
               <div className="mt-4 ml-4">
-                <p><strong>La Solution en Énergie</strong></p>
-                <p>Email : contact@courtier-energie-pro.fr</p>
-                <p>Téléphone : 01 84 88 32 45</p>
-                <p>Adresse : [À COMPLÉTER - Adresse complète]</p>
+                <p><strong>LA SOLUTION EN ENERGIE</strong></p>
+                <p>Email : contact@lasolutionenenergie.fr</p>
+                <p>Téléphone : 01 89 70 56 32</p>
+                <p>Adresse : 17 rue Louise Michel, 92300 Levallois-Perret</p>
               </div>
             </div>
           </section>

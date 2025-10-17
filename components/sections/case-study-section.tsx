@@ -18,16 +18,16 @@ export function CaseStudySection() {
 
   const steps = [
     {
-      title: "Récupération",
-      description: "récupéré les factures et contrats existants"
+      title: "Récupération des documents",
+      description: "Le Courtier a récupéré les factures et contrats du client en 2 jours"
     },
     {
-      title: "Consultation",
-      description: "lancé la consultation auprès de plusieurs fournisseurs partenaires"
+      title: "Mise en concurrence de nos fournisseurs partenaires",
+      description: "Le Pôle pricing a formulé une offre pour le Courtier sous 24h afin de préparer son rendez-vous"
     },
     {
-      title: "Présentation",
-      description: "présenté une offre fixe et stable jusqu'en 2028, garantissant plus de 20 000 € d'économies par an"
+      title: "Présentation des offres et signature du contrat",
+      description: "Le Courtier a présenté une offre à prix fixe jusqu'à fin 2029 garantissant plus de 20 000 € d'économies par an pour le client et une sérénité dans le suivi de son contrat d'énergie"
     }
   ]
 
@@ -64,22 +64,46 @@ export function CaseStudySection() {
         }
       })
 
-      // Steps cards stagger
+      // Steps cards stagger with progressive scroll animation
       if (stepsRef.current) {
         const cards = stepsRef.current.querySelectorAll(".step-card")
+        const arrows = stepsRef.current.querySelectorAll(".arrow-animation")
+
         if (cards && cards.length > 0) {
           gsap.set(cards, { opacity: 1 })
-          gsap.from(cards, {
-            opacity: 0,
-            y: 30,
-            duration: 0.5,
-            stagger: 0.1,
-            ease: "power2.out",
-            scrollTrigger: {
-              trigger: stepsRef.current,
-              start: "top 80%",
-              toggleActions: "play none none none"
-            }
+          gsap.set(arrows, { opacity: 1 })
+
+          // Animate each card individually as user scrolls
+          cards.forEach((card) => {
+            gsap.from(card, {
+              opacity: 0,
+              y: 50,
+              scale: 0.95,
+              duration: 0.8,
+              ease: "power3.out",
+              scrollTrigger: {
+                trigger: card,
+                start: "top 85%",
+                end: "top 50%",
+                toggleActions: "play none none none",
+                scrub: false
+              }
+            })
+          })
+
+          // Animate arrows with delay after their card
+          arrows.forEach((arrow) => {
+            gsap.from(arrow, {
+              opacity: 0,
+              x: -20,
+              duration: 0.6,
+              ease: "power2.out",
+              scrollTrigger: {
+                trigger: arrow,
+                start: "top 85%",
+                toggleActions: "play none none none"
+              }
+            })
           })
         }
       }
@@ -129,10 +153,10 @@ export function CaseStudySection() {
         {/* Header */}
         <div ref={titleRef} className="text-center mb-8 sm:mb-12 lg:mb-16">
           <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-foreground mb-4 leading-tight">
-            Cas Client
+            Exemple de
             <br className="hidden sm:block" />
             <span className="bg-gradient-to-r from-primary via-blue-600 to-accent-foreground bg-clip-text text-transparent">
-              {" "}Réel
+              {" "}cas client
             </span>
           </h2>
           <p className="text-sm sm:text-base lg:text-lg text-muted-foreground max-w-4xl mx-auto leading-relaxed">
@@ -142,50 +166,43 @@ export function CaseStudySection() {
           </p>
         </div>
 
-        {/* Central Stats Circle */}
+        {/* Process Steps with Arrows */}
         <div className="relative max-w-5xl mx-auto mb-12 sm:mb-16">
-          {/* Center Circle */}
-          <div className="flex justify-center items-center mb-8 sm:mb-12">
-            <div ref={circleRef} className="relative w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96 rounded-full bg-card border border-border p-1 shadow-xl hover:shadow-2xl transition-all duration-300">
-              <div className="w-full h-full rounded-full bg-card flex flex-col items-center justify-center text-center p-6 sm:p-8 border border-border">
-                <div className="text-4xl sm:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-amber-400 via-yellow-500 to-amber-500 bg-clip-text text-transparent mb-2">
-                  +20%
-                </div>
-                <div className="text-sm sm:text-base lg:text-lg text-muted-foreground mb-4">
-                  d'économies
-                </div>
-                <div className="text-xs sm:text-sm text-muted-foreground">
-                  Budget énergétique annuel
-                </div>
-                <div className="text-lg sm:text-xl lg:text-2xl font-bold text-foreground mt-2">
-                  &gt; 100 000 €
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Process Steps in Circle Layout */}
-          <div ref={stepsRef} className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 max-w-6xl mx-auto">
+          <div ref={stepsRef} className="flex flex-col md:flex-row md:items-start md:justify-center gap-0 max-w-6xl mx-auto">
             {steps.map((step, index) => (
-              <div
-                key={index}
-                className="step-card bg-card border border-border rounded-2xl p-5 sm:p-6 hover:shadow-lg transition-all duration-300 group"
-              >
-                <div className="flex items-start gap-4">
-                  <div className="flex-shrink-0">
-                    <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-gradient-to-r from-blue-500 via-blue-600 to-primary flex items-center justify-center text-white font-bold shadow-lg group-hover:scale-110 transition-transform duration-300">
-                      {index + 1}
+              <div key={index} className="flex flex-col md:flex-row items-center md:flex-1">
+                <div className="step-card bg-card border border-border rounded-2xl p-5 sm:p-6 hover:shadow-lg transition-all duration-300 group w-full">
+                  <div className="flex items-start gap-4">
+                    <div className="flex-shrink-0">
+                      <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-gradient-to-r from-blue-500 via-blue-600 to-primary flex items-center justify-center text-white font-bold shadow-lg group-hover:scale-110 transition-transform duration-300">
+                        {index + 1}
+                      </div>
+                    </div>
+                    <div>
+                      <h3 className="text-base sm:text-lg font-bold text-foreground mb-2 sm:mb-3">
+                        {step.title}
+                      </h3>
+                      <p className="text-xs sm:text-sm text-foreground/80 leading-relaxed">
+                        {step.description}
+                      </p>
                     </div>
                   </div>
-                  <div>
-                    <h3 className="text-lg sm:text-xl font-bold text-foreground mb-2 sm:mb-3">
-                      {step.title}
-                    </h3>
-                    <p className="text-xs sm:text-sm text-foreground/80 leading-relaxed">
-                      {step.description}
-                    </p>
-                  </div>
                 </div>
+
+                {/* Animated Arrow between steps */}
+                {index < steps.length - 1 && (
+                  <div className="arrow-animation flex items-center justify-center py-4 md:py-0 md:px-2 lg:px-4">
+                    <svg
+                      className="w-8 h-8 md:w-10 md:h-10 text-primary animate-bounce md:animate-pulse rotate-90 md:rotate-0"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      strokeWidth={2.5}
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                    </svg>
+                  </div>
+                )}
               </div>
             ))}
           </div>
@@ -229,7 +246,7 @@ export function CaseStudySection() {
                   </svg>
                 </div>
                 <span className="text-sm text-foreground">
-                  <strong className="text-primary">+20 000 €</strong> d'économies par an garanties
+                  <strong className="text-primary font-bold">20 000 €</strong> d'économies par an garanties
                 </span>
               </li>
               <li className="flex items-start gap-3">
@@ -290,6 +307,6 @@ export function CaseStudySection() {
 
       {/* Contact Form Modal */}
       <ContactFormModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
-    </section>
+    </section >
   )
 }
