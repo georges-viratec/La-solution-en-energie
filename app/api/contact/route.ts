@@ -53,8 +53,8 @@ export async function POST(request: Request) {
 
     const info = await transporter.sendMail({
       from: `"La Solution en Énergie" <${process.env.SMTP_FROM}>`,
-      //to: ["contact@courtier-energie-pro.fr", "contact@lasolutionenenergie.fr"],
-      to: ["dev@viratec.fr"],
+      to: ["contact@courtier-energie-pro.fr", "contact@lasolutionenenergie.fr"],
+      //to: ["dev@viratec.fr"],
       subject: `Nouvelle candidature: ${prenom} ${nom}`,
       html: emailHtml,
       attachments: attachments
