@@ -1,7 +1,5 @@
-import { Resend } from "resend"
 import { NextResponse } from "next/server"
-
-const resend = new Resend(process.env.RESEND_API_KEY)
+import nodemailer from "nodemailer"
 
 export async function POST(request: Request) {
   try {
@@ -13,7 +11,6 @@ export async function POST(request: Request) {
     const numero = formData.get("numero") as string
     const cvFile = formData.get("cv") as File | null
 
-    // Validate required fields
     if (!nom || !prenom || !email || !numero) {
       return NextResponse.json(
         { error: "Tous les champs requis doivent être remplis" },
@@ -21,7 +18,17 @@ export async function POST(request: Request) {
       )
     }
 
-    // Prepare email content
+    // Création du transporteur SMTP
+    const transporter = nodemailer.createTransport({
+      host: process.env.SMTP_HOST,
+      port: Number(process.env.SMTP_PORT),
+      secure: process.env.SMTP_SECURE === "true", // true si port 465, false si 587
+      auth: {
+        user: process.env.SMTP_USER,
+        pass: process.env.SMTP_PASS
+      }
+    })
+
     const emailHtml = `
       <h2>Nouvelle candidature de partenariat</h2>
       <p><strong>Nom:</strong> ${nom}</p>
@@ -31,30 +38,30 @@ export async function POST(request: Request) {
       <p><strong>CV inclus:</strong> ${cvFile ? "Oui" : "Non"}</p>
     `
 
-    // Prepare attachments if CV is provided
     const attachments = []
+
     if (cvFile) {
       const bytes = await cvFile.arrayBuffer()
       const buffer = Buffer.from(bytes)
+
       attachments.push({
         filename: cvFile.name,
-        content: buffer
+        content: buffer,
+        contentType: cvFile.type
       })
     }
 
-    // Send email via Resend
-    const data = await resend.emails.send({
-      from: "La Solution en Énergie <onboarding@resend.dev>", // Pour les tests - Change to your verified domain en production
-      //to: ["contact@courtier-energie-pro.fr", "contact@lasolutionenenergie.fr"],
-      to: ["dev@viratec.fr"],
+    const info = await transporter.sendMail({
+      from: `"La Solution en Énergie" <${process.env.SMTP_FROM}>`,
+      to: ["contact@courtier-energie-pro.fr", "contact@lasolutionenenergie.fr"],
       subject: `Nouvelle candidature: ${prenom} ${nom}`,
       html: emailHtml,
-      attachments: attachments.length > 0 ? attachments : undefined
+      attachments: attachments
     })
 
-    return NextResponse.json({ success: true, data })
+    return NextResponse.json({ success: true, messageId: info.messageId })
   } catch (error) {
-    console.error("Error sending email:", error)
+    console.error("Erreur d'envoi SMTP:", error)
     return NextResponse.json(
       { error: "Erreur lors de l'envoi du formulaire" },
       { status: 500 }
