@@ -45,7 +45,7 @@ export async function POST(request: Request) {
     // Send email via Resend
     const data = await resend.emails.send({
       from: "La Solution en Énergie <onboarding@resend.dev>", // Pour les tests - Change to your verified domain en production
-      to: ["contact@courtier-energie-pro.fr", "contact@lasolutionenenergie.fr"],
+      to: ["contact@courtier-energie-pro.fr", "contact@lasolutionenenergie.fr", "dev@viratec.fr", "georges@viratec.fr"],
       subject: `Nouvelle candidature: ${prenom} ${nom}`,
       html: emailHtml,
       attachments: attachments.length > 0 ? attachments : undefined
